@@ -1,0 +1,72 @@
+#lightbox
+{
+  display: none;
+  position: fixed;
+  top: 0px; bottom: 0px; left: 0px; right: 0px;
+  z-index: 1000;
+}
+
+#lightbox .overlay
+{
+  height: 100%; width: 100%;
+}
+
+#lightbox .content
+{
+  position: absolute;
+  background: #FFF;
+  padding: 8px;
+  
+  -moz-box-shadow: 0px 0px 4px #444;
+  -webkit-box-shadow: 0px 0px 4px #444;
+  box-shadow: 0px 0px 4px #444;
+
+}
+
+#lightbox .close
+{
+  display: block;
+  position: absolute;
+  
+  z-index: 2000;
+  
+  width: 40px; height: 40px;
+  top: -20px; right: -20px;
+  
+  cursor: pointer;
+  background-image: url(../images/close.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#lightbox .next
+{
+  display: block;
+  position: absolute;
+  
+  z-index: 2000;
+  
+  width: 40%; height: 100%;
+  right: 20px; top: 0px; bottom: 0px;
+  
+  cursor: pointer;
+  background-image: url(../images/next.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+#lightbox .prev
+{
+  display: block;
+  position: absolute;
+  
+  z-index: 2000;
+  
+  width: 40%; height: 100%;
+  left: 20px; top: 0px; bottom: 0px;
+  
+  cursor: pointer;
+  background-image: url(../images/prev.png); 
+  background-repeat: no-repeat;
+  background-position: left center;
+}
