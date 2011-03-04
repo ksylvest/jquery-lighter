@@ -6,8 +6,8 @@ Light Box is a jQuery plugin designed to provide a zoom. Light Box supports basi
 
 To install copy the *images*, *javascripts*, and *stylesheets* directories into your project and add the following snippet to the header:
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script> 
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"></script>
     <script src="javascripts/jquery.gallery.js" type="text/javascript"></script>
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
   
@@ -43,7 +43,6 @@ Setting up a gallery is easy. The following snippet is a good start:
       $('.lightbox').lightbox();
     </script>
 
-
 ## Copyright
 
-Copyright (c) 2011 Kevin Sylvestre. See LICENSE for details.
+Copyright (c) 2010 - 2011 Kevin Sylvestre. See LICENSE for details.
