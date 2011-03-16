@@ -10,15 +10,16 @@
   
   $.fn.lightbox = function(options) {
     
+		
     var settings = {
       duration: 600,
       easing: 'easeInOutBack',
       dimensions: {
-        width:  600,
-        height: 400,
+        width:  800,
+        height: 600,
       }
     };
-
+		
     if (options) $.extend(settings, options);
     
     var html = '<div id="lightbox"><div class="overlay"></div><div class="content"></div></div>';
@@ -28,18 +29,27 @@
     var index;
     var $elements = $(this)
     var $current;
-
+		
     var $lightbox = $('#lightbox');
     var $overlay  = $('#lightbox .overlay');
     var $content  = $('#lightbox .content');
     
-    var $close = $('<span class="close"></span>');
-    var $next = $('<span class="next"></span>');
-    var $prev = $('<span class="prev"></span>');
+    var $close = $('<a class="close"></a>');
+		var $body = $('<span class="body"></span>');
+		
+		
+	  process = function($element) {
+			
+	    var image = new Image();
+	    image.src = $element.attr('href');
+			
+	    var $contents = $("<img />").attr({ 'src' : image.src }).css(settings['dimensions']);
+	
+			$body.html($contents);
+			
+	  };
     
-    /**
-     *
-     */
+		
     align = function($element) {
       
       $content.css({
@@ -54,27 +64,19 @@
       
     };
     
-    /**
-     *
-     */
+		
     setup = function() {
       $content.append($close);
-      $content.append($next);
-      $content.append($prev);
+			$content.append($body);
     };
     
-    /**
-     *
-     */
+		
     teardown = function() {
       $close.detach();
-      $next.detach();
-      $prev.detach();
+			$body.detach();
     }
     
-    /**
-     *
-     */
+		
     hide = function($element) {
 
       $overlay.css({ 'opacity' : 0.4 });
@@ -94,9 +96,7 @@
 
     };
     
-    /**
-     *
-     */
+		
     show = function($element) {
 
       $overlay.css({ 'opacity' : 0.0 });
@@ -115,56 +115,36 @@
       }, settings['duration'], settings['easing'], function() { setup(); });
     };
     
-    /**
-     *
-     */
-    next = function() {
-      index++; index += current.length; index %= current.length;
-      $current = $elements[index];
-    };
-    
-    /**
-     *
-     */
-    prev = function() {
-      index--; index += current.length; index %= current.length;
-      $current = $elements[index];
-    };
-    
+		
     $(this).each(function (i) {
       $(this).click(function(event) {
         event.preventDefault();
-        
+				
         index = i;
-      
+				
         $current = $(this);
-      
+				
         align($(this));
         show($(this));
+				process($(this));
       });
     });
+		
     
     $overlay.click(function(event) {
       event.preventDefault();
       hide($current);
     });
     
+		
     $close.click(function(event) {
       event.preventDefault();
       hide($current);
     });
+		
     
     return this;
-
+		
   };
-  
-  process = function(src) {
-    
-    var image = new Image();
-    image.src = src;
-    
-    return $("<img />").attr({ 'src' : image.src }).css(settings['dimensions']);
-    
-  };
-  
+	
 }) (jQuery);
