@@ -10,7 +10,6 @@
   
   $.fn.lightbox = function(options) {
     
-		
     var settings = {
       duration: 600,
       easing: 'easeInOutBack',
@@ -24,7 +23,7 @@
     
     var html = '<div id="lightbox"><div class="overlay"></div><div class="content"></div></div>';
     
-    $('body').append(html);
+    $('body:not(:has(#lightbox))').append(html);
     
     var index;
     var $elements = $(this)
@@ -39,11 +38,29 @@
 		
 		
 	  process = function($element) {
+		
+			var $contents = null;
 			
-	    var image = new Image();
-	    image.src = $element.attr('href');
+			href = $element.attr('href');
+			type = settings['type'];
 			
-	    var $contents = $("<img />").attr({ 'src' : image.src }).css(settings['dimensions']);
+			if (href.match(/(jpeg|jpg|jpe|gif|png|bmp)$/i)) type = 'image';
+			if (href.match(/(webm|mov|mp4|m4v|ogg|ogv)$/i)) type = 'video';
+		
+			switch (type) 
+			{
+				case "image":
+					$contents = $("<img  />").attr({ 'src' : href });
+					break;
+				case "video":
+					$contents = $("video />").attr({ 'src' : href });
+					break;
+				default:
+					$contents = $(href);
+					break;
+			}
+			
+			$contents.css(settings['dimensions']);
 	
 			$body.html($contents);
 			
