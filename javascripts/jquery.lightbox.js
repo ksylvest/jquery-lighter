@@ -89,7 +89,6 @@
 
     var setup = function () {
       $content.append($close);
-      $content.append($caption);
       $content.append($next);
       $content.append($prev);
       $content.append($body);
@@ -98,7 +97,6 @@
 
     var teardown = function () {
       $close.detach();
-      $caption.detach();
       $next.detach();
       $prev.detach();
       $body.detach();
