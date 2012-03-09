@@ -12,8 +12,14 @@ $.fn.extend
   lightbox: (options) ->
     
     settings =
-      duration: 600
-      easing: 'easeInOutBack'
+      duration: 
+        hide: 600
+        show: 600
+        resize: 200
+      easing:
+        hide: 'easeInOutBack'
+        show: 'easeInOutBack'
+        resize: 'swing'
       dimensions:
         width:  920
         height: 540
@@ -38,33 +44,47 @@ $.fn.extend
     process = ($element) ->
       $contents = null
       href = $element.attr("href")
-      type = settings["type"]
+      type = settings.type
       type = "image" if href.match(/\.(jpeg|jpg|jpe|gif|png|bmp)$/i)
       type = "video" if href.match(/\.(webm|mov|mp4|m4v|ogg|ogv)$/i)
       switch type
         when "image" then $contents = $("<img  />").attr(src: href)
         when "video" then $contents = $("video />").attr(src: href)
         else $contents = $(href)
-      $contents.css settings["dimensions"]
+      $contents.css settings.dimensions
       $body.html $contents
+
+    resize = ->
+      $content.css
+        top:     Math.round(($(window).height() - settings.dimensions.height) / 2)
+        left:    Math.round(($(window).width()  - settings.dimensions.width ) / 2)
+        bottom:  Math.round(($(window).height() + settings.dimensions.height) / 2)
+        right:   Math.round(($(window).width()  + settings.dimensions.width ) / 2)
+        height:  settings.dimensions.height
+        width:   settings.dimensions.width
+      , settings.duration.resize, settings.easing.resize
 
     align = ($element) ->
       $content.css
         opacity: 0.0
-        top: $element.offset().top
-        left: $element.offset().left
-        right: $element.offset().right
+        top:    $element.offset().top
+        left:   $element.offset().left
+        right:  $element.offset().right
         bottom: $element.offset().bottom
         height: $element.height()
-        width: $element.width()
+        width:  $element.width()
 
     setup = ->
+      $(window).bind "resize", resize
+      
       $content.append $close
       $content.append $next
       $content.append $prev
       $content.append $body
 
     clear = ->
+      $(window).unbind "resize", resize
+    
       $close.detach()
       $next.detach()
       $prev.detach()
@@ -84,7 +104,7 @@ $.fn.extend
         bottom: $element.offset().bottom
         height: $element.height()
         width:  $element.width()
-      , settings["duration"], settings["easing"], ->
+      , settings.duration.hide, settings.easing.hide, ->
         $lightbox.hide()
 
     show = ($element) ->
@@ -95,13 +115,16 @@ $.fn.extend
       
       $content.animate
         opacity: 1.0
-        top:     Math.round(($(window).height() - settings["dimensions"]["height"]) / 2)
-        left:    Math.round(($(window).width()  - settings["dimensions"]["width"] ) / 2)
-        bottom:  Math.round(($(window).height() + settings["dimensions"]["height"]) / 2)
-        right:   Math.round(($(window).width()  + settings["dimensions"]["width"] ) / 2)
-        height:  settings["dimensions"]["height"]
-        width:   settings["dimensions"]["width"]
-      , settings["duration"], settings["easing"], setup
+        top:     Math.round(($(window).height() - settings.dimensions.height) / 2)
+        left:    Math.round(($(window).width()  - settings.dimensions.width ) / 2)
+        bottom:  Math.round(($(window).height() + settings.dimensions.height) / 2)
+        right:   Math.round(($(window).width()  + settings.dimensions.width ) / 2)
+        height:  settings.dimensions.height
+        width:   settings.dimensions.width
+      , settings.duration.show, settings.easing.show, setup
+
+    $(window).resize ->
+      
 
     $(this).each (i) ->
       $(this).click (event) ->
@@ -118,8 +141,6 @@ $.fn.extend
     $close.click (event) ->
       event.preventDefault()
       hide $current
-      
-    return this
-    
+        
 $ ->
   $("[data-lightbox]").lightbox()
