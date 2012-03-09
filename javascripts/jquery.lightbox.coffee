@@ -3,6 +3,8 @@ jQuery Light Box
 Copyright 2012 Kevin Sylvestre
 ###
 
+"use strict"
+
 $ = jQuery
 
 $.fn.extend
@@ -13,20 +15,111 @@ $.fn.extend
       duration: 600
       easing: 'easeInOutBack'
       dimensions:
-        width:  800
-        height: 600
+        width:  920
+        height: 540
     
-    settings = $.extend settings, options if options
+    $.extend settings, options if options
     
-    html  = '<div id="lightbox"><div id="lightbox-overlay"></div><div id="lightbox-content"></div></div>'
-    close = '<a id="lightbox-close">&times;</a>'
-    body  = '<span id="lightbox-body"></span>'
-    
-    index = null
     $current = null
     
-    $lightbox = $('#lightbox');
-    $overlay  = $('#lightbox-overlay');
-    $content  = $('#lightbox-content');
-    $close    = $('#lightbox-close');
-    $body     = $('#lightbox-body');
+    html = "<div id='lightbox' class='lightbox'><div class='lightbox-overlay'></div><div class='lightbox-content'></div></div>"
+    $("body:not(:has(#lightbox))").append html
+    
+    $lightbox = $("#lightbox")
+    $overlay = $("#lightbox .lightbox-overlay")
+    $content = $("#lightbox .lightbox-content")
+    
+    $caption = $("<div class='lightbox-caption'><p><strong>{{title}}</strong></p><p>{{details}}</p></div>")
+    $close = $("<a class='lightbox-close'>&times;</a>")
+    $prev = $("<a class='lightbox-prev'>&lsaquo;</a>")
+    $next = $("<a class='lightbox-next'>&rsaquo;</a>")
+    $body = $("<span class='lightbox-body'></span>")
+    
+    process = ($element) ->
+      $contents = null
+      href = $element.attr("href")
+      type = settings["type"]
+      type = "image" if href.match(/\.(jpeg|jpg|jpe|gif|png|bmp)$/i)
+      type = "video" if href.match(/\.(webm|mov|mp4|m4v|ogg|ogv)$/i)
+      switch type
+        when "image" then $contents = $("<img  />").attr(src: href)
+        when "video" then $contents = $("video />").attr(src: href)
+        else $contents = $(href)
+      $contents.css settings["dimensions"]
+      $body.html $contents
+
+    align = ($element) ->
+      $content.css
+        opacity: 0.0
+        top: $element.offset().top
+        left: $element.offset().left
+        right: $element.offset().right
+        bottom: $element.offset().bottom
+        height: $element.height()
+        width: $element.width()
+
+    setup = ->
+      $content.append $close
+      $content.append $next
+      $content.append $prev
+      $content.append $body
+
+    clear = ->
+      $close.detach()
+      $next.detach()
+      $prev.detach()
+      $body.detach()
+
+    hide = ($element) ->
+      $overlay.css opacity: 0.4
+      $overlay.animate opacity: 0.0
+      
+      clear()
+      
+      $content.animate
+        opacity: 0.0
+        top:    $element.offset().top
+        left:   $element.offset().left
+        right:  $element.offset().right
+        bottom: $element.offset().bottom
+        height: $element.height()
+        width:  $element.width()
+      , settings["duration"], settings["easing"], ->
+        $lightbox.hide()
+
+    show = ($element) ->
+      $overlay.css opacity: 0.0
+      $overlay.animate opacity: 0.4
+      
+      $lightbox.show()
+      
+      $content.animate
+        opacity: 1.0
+        top:     Math.round(($(window).height() - settings["dimensions"]["height"]) / 2)
+        left:    Math.round(($(window).width()  - settings["dimensions"]["width"] ) / 2)
+        bottom:  Math.round(($(window).height() + settings["dimensions"]["height"]) / 2)
+        right:   Math.round(($(window).width()  + settings["dimensions"]["width"] ) / 2)
+        height:  settings["dimensions"]["height"]
+        width:   settings["dimensions"]["width"]
+      , settings["duration"], settings["easing"], setup
+
+    $(this).each (i) ->
+      $(this).click (event) ->
+        event.preventDefault()
+        $current = $(this)
+        align $current
+        show $current
+        process $current
+
+    $overlay.click (event) ->
+      event.preventDefault()
+      hide $current
+
+    $close.click (event) ->
+      event.preventDefault()
+      hide $current
+      
+    return this
+    
+$ ->
+  $("[data-lightbox]").lightbox()
