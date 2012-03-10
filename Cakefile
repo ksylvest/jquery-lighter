@@ -6,7 +6,7 @@ task 'watch', 'SASS and CoffeeScript asset compilation', (options) ->
     
     proc.stderr.on 'data', (buffer) -> 
       console.log(buffer.toString())
-      growl.notify(message) if growl
+      growl.notify(message) if growl?
       
     proc.stdout.on 'data', (buffer) -> 
       console.log buffer.toString()
