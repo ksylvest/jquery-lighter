@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>jQuery Lightbox</title>
-  <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
-  <script src="javascripts/jquery.lightbox.js" type="text/javascript"></script>
-  <link href="stylesheets/jquery.lightbox.css" rel="stylesheet" type="text/css" />
-  <style type="text/css">
-    html, body
-    {
-      font-family: "Droid Sans", sans-serif;
-    }
-    h1, h2, h3, h4, h5, h6, p
-    {
-      font-weight: normal;
-    }
-    .content
-    {
-      width: 740px;
-      margin: 40px auto;
-    }
-  </style>
-</head>
-<body>
-  
-  <div class="content">
-    <a href="samples/sample-01.png" data-lightbox data-lightbox-title="Example #1" data-lightbox-details=""><img src="samples/preview-01.png" /></a>
-    <a href="samples/sample-02.png" data-lightbox data-lightbox-title="Example #2" data-lightbox-details=""><img src="samples/preview-02.png" /></a>
-    <a href="samples/sample-03.png" data-lightbox data-lightbox-title="Example #3" data-lightbox-details=""><img src="samples/preview-03.png" /></a>
-    <a href="samples/sample-04.png" data-lightbox data-lightbox-title="Example #4" data-lightbox-details=""><img src="samples/preview-04.png" /></a>
-    <a href="samples/sample-05.png" data-lightbox data-lightbox-title="Example #5" data-lightbox-details=""><img src="samples/preview-05.png" /></a>
-    <a href="samples/sample-06.png" data-lightbox data-lightbox-title="Example #6" data-lightbox-details=""><img src="samples/preview-06.png" /></a>
-  </div>
-
-</body>
+  <head>
+    <meta charset='UTF-8'>
+      <title>jQuery Lightbox</title>
+      <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' type='text/javascript'></script>
+        <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js' type='text/javascript'></script>
+        <script src='javascripts/jquery.lightbox.js' type='text/javascript'></script>
+        <link href='stylesheets/jquery.lightbox.css' rel='stylesheet' type='text/css' />
+        <style type='text/css'>
+          /*<![CDATA[*/
+            html, body
+            {
+              font-family: "Droid Sans", sans-serif;
+            }
+            h1, h2, h3, h4, h5, h6, p
+            {
+              font-weight: normal;
+            }
+            .content
+            {
+              width: 740px;
+              margin: 40px auto;
+            }
+          /*]]>*/
+        </style>
+      </link>
+    </meta>
+  </head>
+  <body>
+    <div class='content'>
+      <a data-lightbox='samples/sample-01.png' href='samples/sample-01.png'>
+        <img src='samples/preview-01.png' />
+      </a>
+      <a data-lightbox='samples/sample-02.png' href='samples/sample-02.png'>
+        <img src='samples/preview-02.png' />
+      </a>
+      <a data-lightbox='samples/sample-03.png' href='samples/sample-03.png'>
+        <img src='samples/preview-03.png' />
+      </a>
+      <a data-lightbox='samples/sample-04.png' href='samples/sample-04.png'>
+        <img src='samples/preview-04.png' />
+      </a>
+      <a data-lightbox='samples/sample-05.png' href='samples/sample-05.png'>
+        <img src='samples/preview-05.png' />
+      </a>
+      <a data-lightbox='samples/sample-06.png' href='samples/sample-06.png'>
+        <img src='samples/preview-06.png' />
+      </a>
+    </div>
+  </body>
 </html>
