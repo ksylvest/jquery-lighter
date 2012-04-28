@@ -1,47 +1,21 @@
-# jQuery Light Box
+# jQuery Spinner
 
-Light Box is a jQuery plugin designed to provide a zoom. Light Box supports basic animations.
+Spinner is a simple jQuery plugin designed to animated spinners with only CSS and JavaScript.
 
 ## Installation
 
-To install copy the *images*, *javascripts*, and *stylesheets* directories into your project and add the following snippet to the header:
+To install copy the *javascripts* and *stylesheets* directories into your project and add the following snippet to the header:
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="javascripts/jquery.lightbox.js" type="text/javascript"></script>
-    <link href="stylesheets/jquery.lightbox.css" rel="stylesheet" type="text/css" />
+    <script src="javascripts/jquery.spinner.js" type="text/javascript"></script>
+    <link href="stylesheets/jquery.spinner.css" rel="stylesheet" type="text/css" />
   
 ## Examples
 
-Setting up a gallery is easy. The following snippet is a good start:
+Setting up a spinner is easy:
     
-    <a href="samples/sample-01.png" data-lightbox>
-      <img src="samples/preview-01.png" />
-    </a>
-
-    <a href="samples/sample-02.png" data-lightbox>
-      <img src="samples/preview-02.png" />
-    </a>
-
-    <a href="samples/sample-03.png" data-lightbox>
-      <img src="samples/preview-03.png" />
-    </a>
-
-    <a href="samples/sample-04.png" data-lightbox>
-      <img src="samples/preview-04.png" />
-    </a>
-
-    <a href="samples/sample-05.png" data-lightbox>
-      <img src="samples/preview-05.png" />
-    </a>
-
-    <a href="samples/sample-06.png" data-lightbox>
-      <img src="samples/preview-06.png" />
-    </a>
-  
-    <script type="text/javascript">
-      $('.lightbox').lightbox();
-    </script>
+    <div data-spinner />
 
 ## Copyright
 
