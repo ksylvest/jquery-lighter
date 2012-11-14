@@ -2,12 +2,23 @@
 %html
   %head
     %meta{ charset: "UTF-8" }
-      %title jQuery Spinner
+      %title jQuery Lightbox
       %link{ href:"http://fonts.googleapis.com/css?family=Droid+Sans:400,700", rel: "stylesheet", type: "text/css" }
-      %script{ src:"https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js", type: "text/javascript" }
-      %script{ src:"https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js", type: "text/javascript" }
-      %script{ src:"javascripts/jquery.spinner.js", type: "text/javascript" }
-      %link{ href:"stylesheets/jquery.spinner.css", rel: "stylesheet", type: "text/css" }
+        %script{ src:"https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", type: "text/javascript" }
+        %script{ src:"https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js", type: "text/javascript" }
+        %script{ src:"javascripts/jquery.lightbox.js", type: "text/javascript" }
+        %link{ href:"stylesheets/jquery.lightbox.css", rel: "stylesheet", type: "text/css" }
   %body
     .content
-      .spinner{ data: { spin: "spinner" } }
+      %a{ href:"samples/sample-01.png", data: { lightbox: "samples/sample-01.png" } }
+        %img{ src: "samples/preview-01.png" }
+      %a{ href:"samples/sample-02.png", data: { lightbox: "samples/sample-02.png" } }
+        %img{ src:"samples/preview-02.png" }
+      %a{ href:"samples/sample-03.png", data: { lightbox: "samples/sample-03.png" } }
+        %img{ src:"samples/preview-03.png" }
+      %a{ href:"samples/sample-04.png", data: { lightbox: "samples/sample-04.png" } }
+        %img{ src:"samples/preview-04.png" }
+      %a{ href:"samples/sample-05.png", data: { lightbox: "samples/sample-05.png" } }
+        %img{ src:"samples/preview-05.png" }
+      %a{ href:"samples/sample-06.png", data: { lightbox: "samples/sample-06.png" } }
+        %img{ src:"samples/preview-06.png" }
