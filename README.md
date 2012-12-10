@@ -1,13 +1,12 @@
-# jQuery Light Box
+# jQuery Lightbox
 
-Light Box is a jQuery plugin designed to provide a zoom. Light Box supports basic animations.
+Lightbox is a jQuery plugin designed to provide a zoom. Lightbox supports basic animations.
 
 ## Installation
 
 To install copy the *images*, *javascripts*, and *stylesheets* directories into your project and add the following snippet to the header:
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
     <script src="javascripts/jquery.lightbox.js" type="text/javascript"></script>
     <link href="stylesheets/jquery.lightbox.css" rel="stylesheet" type="text/css" />
   
