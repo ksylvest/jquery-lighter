@@ -1,0 +1,49 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.3.2)
+    bourbon (2.1.2)
+      sass (>= 3.2)
+      thor
+    childprocess (0.3.6)
+      ffi (~> 1.0, >= 1.0.6)
+    diff-lcs (1.1.3)
+    ffi (1.2.0)
+    haml (3.1.7)
+    jasmine (1.3.0)
+      jasmine-core (>= 1.3.0)
+      rack (~> 1.0)
+      rspec (>= 1.3.1)
+      selenium-webdriver (>= 0.1.3)
+    jasmine-core (1.3.0)
+    libwebsocket (0.1.7.1)
+      addressable
+      websocket
+    multi_json (1.4.0)
+    rack (1.4.1)
+    rspec (2.12.0)
+      rspec-core (~> 2.12.0)
+      rspec-expectations (~> 2.12.0)
+      rspec-mocks (~> 2.12.0)
+    rspec-core (2.12.0)
+    rspec-expectations (2.12.0)
+      diff-lcs (~> 1.1.3)
+    rspec-mocks (2.12.0)
+    rubyzip (0.9.9)
+    sass (3.2.3)
+    selenium-webdriver (2.26.0)
+      childprocess (>= 0.2.5)
+      libwebsocket (~> 0.1.3)
+      multi_json (~> 1.0)
+      rubyzip
+    thor (0.16.0)
+    websocket (1.0.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bourbon
+  haml
+  jasmine
+  sass
