@@ -1,10 +1,10 @@
 .lightbox {
   display: none;
   position: fixed;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 4000; }
   .lightbox p {
     font-size: 12pt;
@@ -17,18 +17,17 @@
     padding: 0px;
     margin: 0px; }
   .lightbox .lightbox-overlay {
-    background: #000;
+    background: black;
     height: 100%;
     width: 100%; }
   .lightbox .lightbox-content {
-    background: #FFF;
+    background: white;
     position: absolute;
     z-index: 4000;
     -webkit-box-shadow: 0px 2px 4px #3c3c3c;
-    -moz-box-shadow: 0px 2px 4px #3c3c3c;
     box-shadow: 0px 2px 4px #3c3c3c; }
   .lightbox .lightbox-caption {
-    color: #FFF;
+    color: white;
     position: absolute;
     z-index: 8000;
     padding: 20px;
@@ -41,7 +40,6 @@
     left: -15px;
     font-size: 16pt;
     -webkit-box-shadow: 0px 2px 4px rgba(60, 60, 60, 0.8);
-    -moz-box-shadow: 0px 2px 4px rgba(60, 60, 60, 0.8);
     box-shadow: 0px 2px 4px rgba(60, 60, 60, 0.8); }
   .lightbox .lightbox-next {
     display: none;
@@ -70,15 +68,11 @@
     font-family: Helvetica, sans-serif;
     color: rgba(255, 255, 255, 0.8);
     border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 40px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    -webkit-border-radius: 40px;
-    -moz-border-radius: 40px;
-    -ms-border-radius: 40px;
-    -o-border-radius: 40px;
-    border-radius: 40px;
     background-color: rgba(80, 80, 80, 0.6);
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(80, 80, 80, 0.6)), color-stop(100%, rgba(40, 40, 40, 0.6)));
     background-image: -webkit-linear-gradient(top, rgba(80, 80, 80, 0.6), rgba(40, 40, 40, 0.6));
