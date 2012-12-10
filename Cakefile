@@ -12,7 +12,7 @@ command = (name, args...) ->
   proc.on 'exit', (status) -> process.exit(1) if status != 0
 
 task 'watch', 'SASS and CoffeeScript asset watching', (options) ->
-  command 'sass', '--watch', 'stylesheets:stylesheets', '-r', './bourbon/lib/bourbon.rb'
+  command 'sass', '--watch', 'stylesheets:stylesheets'
   command 'coffee', '-wc', 'javascripts'
 
 task 'compile', 'HAML sample compilation', (opions) ->
