@@ -6,16 +6,6 @@
   left: 0;
   right: 0;
   z-index: 4000; }
-  .lightbox p {
-    font-size: 12pt;
-    font-weight: normal;
-    padding: 0px;
-    margin: 0px; }
-  .lightbox h1, .lightbox h2, .lightbox h3, .lightbox h4, .lightbox h5, .lightbox h6 {
-    font-size: 14pt;
-    font-weight: normal;
-    padding: 0px;
-    margin: 0px; }
   .lightbox .lightbox-overlay {
     background: black;
     height: 100%;
