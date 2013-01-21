@@ -1,0 +1,25 @@
+@import bourbon/bourbon
+@import neat/neat
+
+$black: #000
+$white: #FFF
+
+h1, h2, h3, h4, h5, h6
+  color: #444
+  font-family: "Droid Sans", sans-serif
+
+p, textarea, input
+  color: #888
+  font-family: "Droid Serif", serif
+
+.content
+  width: 980px
+  margin: 80px auto
+
+img
+  width: 100%
+
+.examples
+  +outer-container
+  .example
+    +span-columns(2 of 8)

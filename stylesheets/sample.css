@@ -1,0 +1,37 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+  font-family: "Droid Sans", sans-serif; }
+
+p, textarea, input {
+  color: #888888;
+  font-family: "Droid Serif", serif; }
+
+.content {
+  width: 980px;
+  margin: 80px auto; }
+
+img {
+  width: 100%; }
+
+.examples {
+  *zoom: 1;
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto; }
+  .examples:before, .examples:after {
+    content: " ";
+    display: table; }
+  .examples:after {
+    clear: both; }
+  .examples .example {
+    display: block;
+    float: left;
+    margin-right: 3.57866%;
+    width: 22.316%; }
+    .examples .example:last-child {
+      margin-right: 0; }
