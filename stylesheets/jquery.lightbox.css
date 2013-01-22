@@ -5,25 +5,32 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 4000; }
+  z-index: 4000;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  -moz-transition: opacity 0.4s ease-in-out;
+  -ms-transition: opacity 0.4s ease-in-out;
+  -o-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+  opacity: 1; }
+  .lightbox.fade {
+    opacity: 0; }
   .lightbox img {
     width: 100%;
     height: 100%; }
   .lightbox .overlay {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.5);
     height: 100%;
     width: 100%; }
   .lightbox .container {
     background: white;
     position: absolute;
     z-index: 4000;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -ms-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    -webkit-box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.8);
-    box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.8); }
+    top: 50%;
+    left: 50%;
+    right: 50%;
+    bottom: 50%;
+    -webkit-box-shadow: 0px 2px 64px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 2px 64px rgba(0, 0, 0, 0.5); }
     .lightbox .container .caption {
       color: white;
       position: absolute;
@@ -32,7 +39,7 @@
       bottom: 0px;
       left: 0px;
       right: 0px;
-      background: rgba(0, 0, 0, 0.6); }
+      background: rgba(0, 0, 0, 0.5); }
     .lightbox .container .close {
       top: 0;
       left: 0;
@@ -41,7 +48,7 @@
       margin: -15px;
       line-height: 28px;
       font-size: 16pt;
-      font-family: Helvetica, Arial, sans-serif; }
+      font-family: Helvetica, Arial, serif; }
     .lightbox .container .next {
       display: none;
       right: 40px;

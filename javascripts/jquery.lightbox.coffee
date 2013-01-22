@@ -34,7 +34,7 @@ class Lightbox
 
   template:
     """
-    <div id='lightbox' class='lightbox'>
+    <div class='lightbox fade'>
       <div class='container'>
         <span class='content'></span>
         <a class='close'>&times;</a>
@@ -46,14 +46,15 @@ class Lightbox
     """
 
   $: (selector) =>
-    @$lightbox ?= $("#lightbox")
+    @$lightbox ?= $(".lightbox")
     @$lightbox.find(selector)
 
   constructor: ($el, settings = {}) ->
     @$el = $el
     @settings = $.extend {}, Lightbox.settings, settings
 
-    $("body").append @template
+    @$lightbox = $(@template)
+    $("body").append @$lightbox
 
     @$overlay = @$(".overlay")
     @$content = @$(".content")
@@ -103,34 +104,27 @@ class Lightbox
 
   align: =>
     @$container.css
-      opacity: 0.0
-      top:    "50%"
-      left:   "50%"
-      right:  "50%"
-      bottom: "50%"
       height: @settings.dimensions.height
       width:  @settings.dimensions.width
       margin: "-#{@settings.dimensions.height / 2}px -#{@settings.dimensions.width / 2}px"
 
   hide: =>
-    @$overlay.css opacity: 1.0
-    @$overlay.animate opacity: 0.0, "fast", "swing"
-
     alpha = @clear
     omega = => @$lightbox.hide()
 
     alpha()
-    @$container.animate opacity: 0.0, "fast", "swing", omega
+    @$lightbox.position()
+    @$lightbox.addClass('fade')
+    Animation.execute(@$lightbox, omega)
 
   show: =>
-    @$overlay.css opacity: 0.0
-    @$overlay.animate opacity: 1.0, "fast", "swing"
-
     omega = @setup
     alpha = => @$lightbox.show()
 
     alpha()
-    @$container.animate opacity: 1.0, "fast", "swing", omega
+    @$lightbox.position()
+    @$lightbox.removeClass('fade')
+    Animation.execute(@$lightbox, omega)
 
 $.fn.extend
   lightbox: (option = {}) ->

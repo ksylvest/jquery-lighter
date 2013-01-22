@@ -68,12 +68,12 @@ Copyright 2013 Kevin Sylvestre
       return new Lightbox($el, options);
     };
 
-    Lightbox.prototype.template = "<div id='lightbox' class='lightbox'>\n  <div class='container'>\n    <span class='content'></span>\n    <a class='close'>&times;</a>\n    <a class='prev'>&lsaquo;</a>\n    <a class='next'>&rsaquo;</a>\n  </div>\n  <div class='overlay'></div>\n</div>";
+    Lightbox.prototype.template = "<div class='lightbox fade'>\n  <div class='container'>\n    <span class='content'></span>\n    <a class='close'>&times;</a>\n    <a class='prev'>&lsaquo;</a>\n    <a class='next'>&rsaquo;</a>\n  </div>\n  <div class='overlay'></div>\n</div>";
 
     Lightbox.prototype.$ = function(selector) {
       var _ref;
       if ((_ref = this.$lightbox) == null) {
-        this.$lightbox = $("#lightbox");
+        this.$lightbox = $(".lightbox");
       }
       return this.$lightbox.find(selector);
     };
@@ -112,7 +112,8 @@ Copyright 2013 Kevin Sylvestre
 
       this.$el = $el;
       this.settings = $.extend({}, Lightbox.settings, settings);
-      $("body").append(this.template);
+      this.$lightbox = $(this.template);
+      $("body").append(this.$lightbox);
       this.$overlay = this.$(".overlay");
       this.$content = this.$(".content");
       this.$container = this.$(".container");
@@ -176,11 +177,6 @@ Copyright 2013 Kevin Sylvestre
 
     Lightbox.prototype.align = function() {
       return this.$container.css({
-        opacity: 0.0,
-        top: "50%",
-        left: "50%",
-        right: "50%",
-        bottom: "50%",
         height: this.settings.dimensions.height,
         width: this.settings.dimensions.width,
         margin: "-" + (this.settings.dimensions.height / 2) + "px -" + (this.settings.dimensions.width / 2) + "px"
@@ -190,39 +186,27 @@ Copyright 2013 Kevin Sylvestre
     Lightbox.prototype.hide = function() {
       var alpha, omega,
         _this = this;
-      this.$overlay.css({
-        opacity: 1.0
-      });
-      this.$overlay.animate({
-        opacity: 0.0
-      }, "fast", "swing");
       alpha = this.clear;
       omega = function() {
         return _this.$lightbox.hide();
       };
       alpha();
-      return this.$container.animate({
-        opacity: 0.0
-      }, "fast", "swing", omega);
+      this.$lightbox.position();
+      this.$lightbox.addClass('fade');
+      return Animation.execute(this.$lightbox, omega);
     };
 
     Lightbox.prototype.show = function() {
       var alpha, omega,
         _this = this;
-      this.$overlay.css({
-        opacity: 0.0
-      });
-      this.$overlay.animate({
-        opacity: 1.0
-      }, "fast", "swing");
       omega = this.setup;
       alpha = function() {
         return _this.$lightbox.show();
       };
       alpha();
-      return this.$container.animate({
-        opacity: 1.0
-      }, "fast", "swing", omega);
+      this.$lightbox.position();
+      this.$lightbox.removeClass('fade');
+      return Animation.execute(this.$lightbox, omega);
     };
 
     return Lightbox;

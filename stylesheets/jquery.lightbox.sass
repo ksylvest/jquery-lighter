@@ -13,19 +13,26 @@ $namespace: "lightbox"
   left: 0
   right: 0
   z-index: 4000
+  +transition(opacity 0.4s ease-in-out)
+  opacity: 1.0
+  &.fade
+    opacity: 0.0
   img
     width: 100%
     height: 100%
   .overlay
-    background: rgba($black, 0.8)
+    background: rgba($black, 0.5)
     height: 100%
     width: 100%
   .container
     background: #FFF
     position: absolute
     z-index: 4000
-    +transition(all 0.2s ease-in-out)
-    +box-shadow(0px 2px 16px rgba($black, 0.8))
+    top:    50%
+    left:   50%
+    right:  50%
+    bottom: 50%
+    +box-shadow(0px 2px 64px rgba($black, 0.5))
     .caption
       color: #FFF
       position: absolute
@@ -34,7 +41,7 @@ $namespace: "lightbox"
       bottom: 0px
       left: 0px
       right: 0px
-      background: rgba(0, 0, 0, 0.6)
+      background: rgba($black, 0.5)
     .close
       top: 0
       left: 0
@@ -43,7 +50,7 @@ $namespace: "lightbox"
       margin: -15px
       line-height: 28px
       font-size: 16pt
-      font-family: Helvetica, Arial, sans-serif
+      font-family: Helvetica, Arial, serif
     .next
       display: none
       right: 40px
