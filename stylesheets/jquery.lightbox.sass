@@ -5,6 +5,9 @@ $white: #FFF
 
 $namespace: "lightbox"
 
+.lightbox, .lightbox *
+  +transition(all 0.4s ease-in-out)
+
 .lightbox
   display: none
   position: fixed
@@ -13,10 +16,11 @@ $namespace: "lightbox"
   left: 0
   right: 0
   z-index: 4000
-  +transition(opacity 0.4s ease-in-out)
   opacity: 1.0
   &.fade
     opacity: 0.0
+    .container
+      +transform(scale(0.5))
   img
     width: 100%
     height: 100%
@@ -32,7 +36,7 @@ $namespace: "lightbox"
     left:   50%
     right:  50%
     bottom: 50%
-    +box-shadow(0px 2px 64px rgba($black, 0.5))
+    +box-shadow(0px 2px 8px rgba($black, 0.5))
     .caption
       color: #FFF
       position: absolute
