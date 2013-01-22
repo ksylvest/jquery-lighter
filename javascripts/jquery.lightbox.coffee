@@ -1,6 +1,6 @@
 ###
 jQuery Lightbox
-Copyright 2012 Kevin Sylvestre
+Copyright 2013 Kevin Sylvestre
 ###
 
 "use strict"
@@ -26,18 +26,26 @@ class Animation
 class Lightbox
   @settings:
     dimensions:
-      width:  920
+      width:  960
       height: 540
 
   @lightbox: ($el, options = {}) ->
-    data = $el.data("_lightbox") or new Lightbox($el, options)
-    $el.data("_lightbox", data)
-    return data
+    new Lightbox($el, options)
 
   template:
-    "<div id='lightbox' class='lightbox'><div class='lightbox-overlay'></div><div class='lightbox-content'></div></div>"
+    """
+    <div id='lightbox' class='lightbox'>
+      <div class='container'>
+        <span class='content'></span>
+        <a class='close'>&times;</a>
+        <a class='prev'>&lsaquo;</a>
+        <a class='next'>&rsaquo;</a>
+      </div>
+      <div class='overlay'></div>
+    </div>
+    """
 
-  $: (selector) ->
+  $: (selector) =>
     @$lightbox ?= $("#lightbox")
     @$lightbox.find(selector)
 
@@ -45,15 +53,16 @@ class Lightbox
     @$el = $el
     @settings = $.extend {}, Lightbox.settings, settings
 
-    $("body:not(:has(#lightbox))").append @template
+    $("body").append @template
 
-    @$overlay = @$(".lightbox-overlay")
-    @$content = @$(".lightbox-content")
+    @$overlay = @$(".overlay")
+    @$content = @$(".content")
+    @$container = @$(".container")
 
-    @$close = $("<a class='lightbox-close'>&times;</a>")
-    @$prev = $("<a class='lightbox-prev'>&lsaquo;</a>")
-    @$next = $("<a class='lightbox-next'>&rsaquo;</a>")
-    @$body = $("<span class='lightbox-body'></span>")
+    @$close = @$(".close")
+    @$prev = @$(".prev")
+    @$next = @$(".next")
+    @$body = @$(".body")
 
     @align()
     @process()
@@ -63,89 +72,65 @@ class Lightbox
     event.stopPropagation()
     @$hide()
 
+  next: =>
+    
+  prev: =>
+    
+
   image: (href) =>
     href.match(/\.(jpeg|jpg|jpe|gif|png|bmp)$/i)
 
-  video: (href) =>
-    href.match(/\.(webm|mov|mp4|m4v|ogg|ogv)$/i)
-
   type: (href = @href()) =>
-    @settings.type or ("image" if @image(href)) or ("video" if @video(href))
+    @settings.type or ("image" if @image(href))
 
   href: =>
     @$el.attr("href")
 
   process: =>
-    @$contents = switch @type(href = @href())
+    type = @type(href = @href())
+
+    @$content.html switch type
       when "image" then $("<img />").attr(src: href)
-      when "video" then $("<video />").attr(src: href)
       else $(href)
-    @$contents.css @settings.dimensions
-    @$body.html @$contents
+
+  resize: (width, height) =>
 
   setup: =>
-    @$close.on 'click', @hide
-
-    @$content.append @$close
-    @$content.append @$next
-    @$content.append @$prev
-    @$content.append @$body
+    @$close.on "click", @hide
 
   clear: =>
-    @$close.off 'click', @hide
-
-    @$close.detach()
-    @$next.detach()
-    @$prev.detach()
-    @$body.detach()
+    @$close.off "click", @hide
 
   align: =>
-    @$content.css
-      opacity: 0.0,
-      top:    @$el.offset().top
-      left:   @$el.offset().left
-      right:  @$el.offset().right
-      bottom: @$el.offset().bottom
-      height: @$el.height()
-      width:  @$el.width()
+    @$container.css
+      opacity: 0.0
+      top:    "50%"
+      left:   "50%"
+      right:  "50%"
+      bottom: "50%"
+      height: @settings.dimensions.height
+      width:  @settings.dimensions.width
+      margin: "-#{@settings.dimensions.height / 2}px -#{@settings.dimensions.width / 2}px"
 
   hide: =>
-    @$overlay.css opacity: 0.8
-    @$overlay.animate opacity: 0.0
+    @$overlay.css opacity: 1.0
+    @$overlay.animate opacity: 0.0, "fast", "swing"
 
     alpha = @clear
     omega = => @$lightbox.hide()
 
     alpha()
-
-    @$content.animate(
-      opacity:  0.0
-      top:     @$el.offset().top
-      left:    @$el.offset().left
-      right:   @$el.offset().right
-      bottom:  @$el.offset().bottom
-      height:  @$el.height()
-      width:   @$el.width()
-    , @settings.duration, @settings.easing, omega)
+    @$container.animate opacity: 0.0, "fast", "swing", omega
 
   show: =>
     @$overlay.css opacity: 0.0
-    @$overlay.animate opacity: 0.4
+    @$overlay.animate opacity: 1.0, "fast", "swing"
 
-    alpha = => @$lightbox.show()
     omega = @setup
+    alpha = => @$lightbox.show()
 
     alpha()
-
-    @$content.animate(
-       opacity: 1.0,
-       top:     Math.round(($(window).height() - @settings.dimensions.height) / 2)
-       left:    Math.round(($(window).width()  - @settings.dimensions.width ) / 2)
-       bottom:  Math.round(($(window).height() + @settings.dimensions.height) / 2)
-       right:   Math.round(($(window).width()  + @settings.dimensions.width ) / 2)
-       height:  @settings.dimensions.height
-       width:   @settings.dimensions.width
-    , @settings.duration, @settings.easing, omega)
+    @$container.animate opacity: 1.0, "fast", "swing", omega
 
 $.fn.extend
   lightbox: (option = {}) ->
@@ -155,11 +140,11 @@ $.fn.extend
       options = $.extend {}, $.fn.lightbox.defaults, typeof option is "object" and option
       action = if typeof option is "string" then option else option.action
       action ?= "show"
-      
+
       Lightbox.lightbox($this, options)[action]()
 
 $(document).on "click", "[data-lightbox]", (event) ->
   event.preventDefault()
   event.stopPropagation()
 
-  $(this).lightbox('show')
+  $(this).lightbox("show")

@@ -2,7 +2,7 @@
 
 /*
 jQuery Lightbox
-Copyright 2012 Kevin Sylvestre
+Copyright 2013 Kevin Sylvestre
 */
 
 
@@ -56,22 +56,19 @@ Copyright 2012 Kevin Sylvestre
 
     Lightbox.settings = {
       dimensions: {
-        width: 920,
+        width: 960,
         height: 540
       }
     };
 
     Lightbox.lightbox = function($el, options) {
-      var data;
       if (options == null) {
         options = {};
       }
-      data = $el.data("_lightbox") || new Lightbox($el, options);
-      $el.data("_lightbox", data);
-      return data;
+      return new Lightbox($el, options);
     };
 
-    Lightbox.prototype.template = "<div id='lightbox' class='lightbox'><div class='lightbox-overlay'></div><div class='lightbox-content'></div></div>";
+    Lightbox.prototype.template = "<div id='lightbox' class='lightbox'>\n  <div class='container'>\n    <span class='content'></span>\n    <a class='close'>&times;</a>\n    <a class='prev'>&lsaquo;</a>\n    <a class='next'>&rsaquo;</a>\n  </div>\n  <div class='overlay'></div>\n</div>";
 
     Lightbox.prototype.$ = function(selector) {
       var _ref;
@@ -95,27 +92,34 @@ Copyright 2012 Kevin Sylvestre
 
       this.setup = __bind(this.setup, this);
 
+      this.resize = __bind(this.resize, this);
+
       this.process = __bind(this.process, this);
 
       this.href = __bind(this.href, this);
 
       this.type = __bind(this.type, this);
 
-      this.video = __bind(this.video, this);
-
       this.image = __bind(this.image, this);
+
+      this.prev = __bind(this.prev, this);
+
+      this.next = __bind(this.next, this);
 
       this.close = __bind(this.close, this);
 
+      this.$ = __bind(this.$, this);
+
       this.$el = $el;
       this.settings = $.extend({}, Lightbox.settings, settings);
-      $("body:not(:has(#lightbox))").append(this.template);
-      this.$overlay = this.$(".lightbox-overlay");
-      this.$content = this.$(".lightbox-content");
-      this.$close = $("<a class='lightbox-close'>&times;</a>");
-      this.$prev = $("<a class='lightbox-prev'>&lsaquo;</a>");
-      this.$next = $("<a class='lightbox-next'>&rsaquo;</a>");
-      this.$body = $("<span class='lightbox-body'></span>");
+      $("body").append(this.template);
+      this.$overlay = this.$(".overlay");
+      this.$content = this.$(".content");
+      this.$container = this.$(".container");
+      this.$close = this.$(".close");
+      this.$prev = this.$(".prev");
+      this.$next = this.$(".next");
+      this.$body = this.$(".body");
       this.align();
       this.process();
     }
@@ -126,19 +130,19 @@ Copyright 2012 Kevin Sylvestre
       return this.$hide();
     };
 
+    Lightbox.prototype.next = function() {};
+
+    Lightbox.prototype.prev = function() {};
+
     Lightbox.prototype.image = function(href) {
       return href.match(/\.(jpeg|jpg|jpe|gif|png|bmp)$/i);
-    };
-
-    Lightbox.prototype.video = function(href) {
-      return href.match(/\.(webm|mov|mp4|m4v|ogg|ogv)$/i);
     };
 
     Lightbox.prototype.type = function(href) {
       if (href == null) {
         href = this.href();
       }
-      return this.settings.type || (this.image(href) ? "image" : void 0) || (this.video(href) ? "video" : void 0);
+      return this.settings.type || (this.image(href) ? "image" : void 0);
     };
 
     Lightbox.prototype.href = function() {
@@ -146,50 +150,40 @@ Copyright 2012 Kevin Sylvestre
     };
 
     Lightbox.prototype.process = function() {
-      var href;
-      this.$contents = (function() {
-        switch (this.type(href = this.href())) {
+      var href, type;
+      type = this.type(href = this.href());
+      return this.$content.html((function() {
+        switch (type) {
           case "image":
             return $("<img />").attr({
-              src: href
-            });
-          case "video":
-            return $("<video />").attr({
               src: href
             });
           default:
             return $(href);
         }
-      }).call(this);
-      this.$contents.css(this.settings.dimensions);
-      return this.$body.html(this.$contents);
+      })());
     };
 
+    Lightbox.prototype.resize = function(width, height) {};
+
     Lightbox.prototype.setup = function() {
-      this.$close.on('click', this.hide);
-      this.$content.append(this.$close);
-      this.$content.append(this.$next);
-      this.$content.append(this.$prev);
-      return this.$content.append(this.$body);
+      return this.$close.on("click", this.hide);
     };
 
     Lightbox.prototype.clear = function() {
-      this.$close.off('click', this.hide);
-      this.$close.detach();
-      this.$next.detach();
-      this.$prev.detach();
-      return this.$body.detach();
+      return this.$close.off("click", this.hide);
     };
 
     Lightbox.prototype.align = function() {
-      return this.$content.css({
+      return this.$container.css({
         opacity: 0.0,
-        top: this.$el.offset().top,
-        left: this.$el.offset().left,
-        right: this.$el.offset().right,
-        bottom: this.$el.offset().bottom,
-        height: this.$el.height(),
-        width: this.$el.width()
+        top: "50%",
+        left: "50%",
+        right: "50%",
+        bottom: "50%",
+        height: this.settings.dimensions.height,
+        width: this.settings.dimensions.width,
+        margin: "-" + (this.settings.dimensions.height / 2) + "px -" + (this.settings.dimensions.width / 2) + "px"
       });
     };
 
@@ -197,25 +191,19 @@ Copyright 2012 Kevin Sylvestre
       var alpha, omega,
         _this = this;
       this.$overlay.css({
-        opacity: 0.8
+        opacity: 1.0
       });
       this.$overlay.animate({
         opacity: 0.0
-      });
+      }, "fast", "swing");
       alpha = this.clear;
       omega = function() {
         return _this.$lightbox.hide();
       };
       alpha();
-      return this.$content.animate({
-        opacity: 0.0,
-        top: this.$el.offset().top,
-        left: this.$el.offset().left,
-        right: this.$el.offset().right,
-        bottom: this.$el.offset().bottom,
-        height: this.$el.height(),
-        width: this.$el.width()
-      }, this.settings.duration, this.settings.easing, omega);
+      return this.$container.animate({
+        opacity: 0.0
+      }, "fast", "swing", omega);
     };
 
     Lightbox.prototype.show = function() {
@@ -225,22 +213,16 @@ Copyright 2012 Kevin Sylvestre
         opacity: 0.0
       });
       this.$overlay.animate({
-        opacity: 0.4
-      });
+        opacity: 1.0
+      }, "fast", "swing");
+      omega = this.setup;
       alpha = function() {
         return _this.$lightbox.show();
       };
-      omega = this.setup;
       alpha();
-      return this.$content.animate({
-        opacity: 1.0,
-        top: Math.round(($(window).height() - this.settings.dimensions.height) / 2),
-        left: Math.round(($(window).width() - this.settings.dimensions.width) / 2),
-        bottom: Math.round(($(window).height() + this.settings.dimensions.height) / 2),
-        right: Math.round(($(window).width() + this.settings.dimensions.width) / 2),
-        height: this.settings.dimensions.height,
-        width: this.settings.dimensions.width
-      }, this.settings.duration, this.settings.easing, omega);
+      return this.$container.animate({
+        opacity: 1.0
+      }, "fast", "swing", omega);
     };
 
     return Lightbox;
@@ -268,7 +250,7 @@ Copyright 2012 Kevin Sylvestre
   $(document).on("click", "[data-lightbox]", function(event) {
     event.preventDefault();
     event.stopPropagation();
-    return $(this).lightbox('show');
+    return $(this).lightbox("show");
   });
 
 }).call(this);

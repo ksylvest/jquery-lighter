@@ -1,5 +1,10 @@
 @import bourbon/bourbon
 
+$black: #000
+$white: #FFF
+
+$namespace: "lightbox"
+
 .lightbox
   display: none
   position: fixed
@@ -8,64 +13,72 @@
   left: 0
   right: 0
   z-index: 4000
-  .lightbox-overlay
-    background: #000
+  img
+    width: 100%
+    height: 100%
+  .overlay
+    background: rgba($black, 0.8)
     height: 100%
     width: 100%
-  .lightbox-content
+  .container
     background: #FFF
     position: absolute
     z-index: 4000
-    +box-shadow(0px 2px 4px rgb(60, 60, 60))
-  .lightbox-caption
-    color: #FFF
-    position: absolute
-    z-index: 8000
-    padding: 20px
-    bottom: 0px
-    left: 0px
-    right: 0px
-    background: rgba(0, 0, 0, 0.6)
-  .lightbox-close
-    top: -15px
-    left: -15px
-    font-size: 16pt
-    +box-shadow(0px 2px 4px rgba(60, 60, 60, 0.8))
-  .lightbox-next
-    display: none
-    right: 20px
-    top: 40%
-    font-size: 18pt
-    &:hover
-      display: block
-  .lightbox-prev
-    display: none
-    left: 20px
-    top: 40%
-    font-size: 18pt
-    &:hover
-      display: block
-  .lightbox-next,
-  .lightbox-prev,
-  .lightbox-close
-    cursor: pointer
-    position: absolute
-    z-index: 8000
-    width: 30px
-    height: 30px
-    line-height: 28px
-    text-align: center
-    font-family: Helvetica, sans-serif
-    color: rgba(255, 255, 255, 0.8)
-    border: 2px solid rgba(255, 255, 255, 0.8)
-    border-radius: 40px
-    +user-select
-    +linear-gradient(rgba(80, 80, 80, 0.6), rgba(40, 40, 40, 0.6))
-    &:hover
-      color: rgba(255, 255, 255, 1)
-      border: 2px solid rgba(255, 255, 255, 1)
-      +linear-gradient(rgba(80, 80, 80, 0.8), rgba(40, 40, 40, 0.8))
-    &:active
-      color: rgba(255, 255, 255, 1)
-      border: 2px solid rgba(255, 255, 255, 1)
-      +linear-gradient(rgba(40, 40, 40, 0.8), rgba(40, 40, 40, 0.8))
+    +transition(all 0.2s ease-in-out)
+    +box-shadow(0px 2px 16px rgba($black, 0.8))
+    .caption
+      color: #FFF
+      position: absolute
+      z-index: 8000
+      padding: 20px
+      bottom: 0px
+      left: 0px
+      right: 0px
+      background: rgba(0, 0, 0, 0.6)
+    .close
+      top: 0
+      left: 0
+      width: 30px
+      height: 30px
+      margin: -15px
+      line-height: 28px
+      font-size: 16pt
+      font-family: Helvetica, Arial, sans-serif
+    .next
+      display: none
+      right: 40px
+      top: 50%
+      width: 40px
+      height: 40px
+      margin: -20px 0
+      line-height: 34px
+      font-size: 32pt
+      font-family: Times, serif
+    .prev
+      display: none
+      left: 40px
+      top: 50%
+      width: 40px
+      height: 40px
+      margin: -20px
+      line-height: 24pt
+      font-size: 34px
+      font-family: Times, serif
+    .next,
+    .prev,
+    .close
+      cursor: pointer
+      position: absolute
+      z-index: 8000
+      text-align: center
+      border-radius: 40px
+      color: rgba(255, 255, 255, 0.8)
+      background: rgba($black, 0.2)
+      +user-select
+      +transition(all 0.2s ease-in-out)
+      &:hover
+        color: rgba($white, 1.0)
+        background: rgba($black, 0.6)
+      &:active
+        color: rgba($white, 1.0)
+        background: rgba($black, 0.6)

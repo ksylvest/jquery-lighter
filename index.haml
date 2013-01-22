@@ -9,6 +9,7 @@
       %script{ src:"https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js", type: "text/javascript" }
       %script{ src:"javascripts/jquery.lightbox.js", type: "text/javascript" }
       %script{ src:"javascripts/sample.js", type: "text/javascript" }
+      %script{ src: "javascripts/rainbow.js", type: "text/javascript" }
   %body
     .content
       %h1 jQuery Lightbox
@@ -26,4 +27,42 @@
         .example
           %a.sample{ href:"samples/sample-04.png", data: { lightbox: "samples/sample-04.png" } }
             %img{ src:"samples/preview-04.png" }
- 
+      %h2 Installation
+      %p To install download one of these packages and include the jquery.lightbox.js and jquery.lightbox.css files in your head with the following:
+      %section.formats
+        .format
+          %a.zip{ href: "packages/jquery.lightbox.zip" }
+        .format
+          %a.tar{ href: "packages/jquery.lightbox.tar" }
+      %pre
+        %code{ data: { language: "html" } }
+          = preserve do
+            :escaped
+              <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+              <script src="javascript/jquery.lightbox.js" type="text/javascript"></script>
+              <link href="stylesheets/jquery.lightbox.css" rel="stylesheet" type="text/css" />
+      %h2 Example
+      %p Setting up a lightbox is easy. The following snippet is a good start:
+      %pre
+        %code{ data: { language: "html" } }
+          = preserve do
+            :escaped
+              <a href="samples/sample-01.png" data-lightbox>
+                <img src="samples/preview-01.png" />
+              </a>
+              <a href="samples/sample-02.png" data-lightbox>
+                <img src="samples/preview-02.png" />
+              </a>
+              <a href="samples/sample-03.png" data-lightbox>
+                <img src="samples/preview-03.png" />
+              </a>
+              <a href="samples/sample-04.png" data-lightbox>
+                <img src="samples/preview-04.png" />
+              </a>
+              <a href="samples/sample-05.png" data-lightbox>
+                <img src="samples/preview-05.png" />
+              </a>
+              <a href="samples/sample-06.png" data-lightbox>
+                <img src="samples/preview-06.png" />
+              </a>
+      %p Copyright (c) 2010 - 2013 Kevin Sylvestre.

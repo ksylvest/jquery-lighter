@@ -12,36 +12,27 @@ To install copy the *images*, *javascripts*, and *stylesheets* directories into 
   
 ## Examples
 
-Setting up a gallery is easy. The following snippet is a good start:
-    
+Setting up a lightbox is easy. The following snippet is a good start:
+
     <a href="samples/sample-01.png" data-lightbox>
       <img src="samples/preview-01.png" />
     </a>
-
     <a href="samples/sample-02.png" data-lightbox>
       <img src="samples/preview-02.png" />
     </a>
-
     <a href="samples/sample-03.png" data-lightbox>
       <img src="samples/preview-03.png" />
     </a>
-
     <a href="samples/sample-04.png" data-lightbox>
       <img src="samples/preview-04.png" />
     </a>
-
     <a href="samples/sample-05.png" data-lightbox>
       <img src="samples/preview-05.png" />
     </a>
-
     <a href="samples/sample-06.png" data-lightbox>
       <img src="samples/preview-06.png" />
     </a>
-  
-    <script type="text/javascript">
-      $('.lightbox').lightbox();
-    </script>
 
 ## Copyright
 
-Copyright (c) 2010 - 2012 Kevin Sylvestre. See LICENSE for details.
+Copyright (c) 2010 - 2013 Kevin Sylvestre. See LICENSE for details.

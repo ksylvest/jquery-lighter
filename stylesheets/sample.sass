@@ -1,9 +1,6 @@
 @import bourbon/bourbon
 @import neat/neat
 
-$black: #000
-$white: #FFF
-
 h1, h2, h3, h4, h5, h6
   color: #444
   font-family: "Droid Sans", sans-serif
@@ -12,14 +9,48 @@ p, textarea, input
   color: #888
   font-family: "Droid Serif", serif
 
+code
+  color: #888
+  font-family: "Consolas", "Monaco", monospace
+
+pre
+  overflow: scroll
+  background: #EEE
+  padding: 10px
+
 .content
   width: 980px
   margin: 80px auto
 
-img
-  width: 100%
+.formats
+  .format
+    display: inline-block
+
+.zip
+  background: url('../images/zip.png')
+  display: block
+  width: 128px
+  height: 128px
+
+.tar
+  background: url('../images/tar.png')
+  display: block
+  width: 128px
+  height: 128px
+
+pre
+  .support
+    &.tag
+      color: #008
+    &.attribute
+      color: #800
+  .string
+    &.value
+      color: #080
 
 .examples
   +outer-container
   .example
     +span-columns(2 of 8)
+    img
+      width: 100%
