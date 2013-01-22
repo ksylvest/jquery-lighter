@@ -69,7 +69,7 @@ Copyright 2013 Kevin Sylvestre
       return new Lightbox($el, options);
     };
 
-    Lightbox.prototype.template = "<div class='lightbox fade'>\n  <div class='container'>\n    <span class='content'></span>\n    <a class='close'>&times;</a>\n    <a class='prev'>&lsaquo;</a>\n    <a class='next'>&rsaquo;</a>\n  </div>\n  <div class='overlay'></div>\n</div>";
+    Lightbox.prototype.template = "<div class='lightbox fade'>\n  <div class='lightbox-container'>\n    <span class='lightbox-content'></span>\n    <a class='lightbox-close'>&times;</a>\n    <a class='lightbox-prev'>&lsaquo;</a>\n    <a class='lightbox-next'>&rsaquo;</a>\n  </div>\n  <div class='lightbox-overlay'></div>\n</div>";
 
     Lightbox.prototype.$ = function(selector) {
       return this.$lightbox.find(selector);
@@ -112,13 +112,13 @@ Copyright 2013 Kevin Sylvestre
       this.$el = $el;
       this.settings = $.extend({}, Lightbox.settings, settings);
       this.$lightbox = $(this.template);
-      this.$overlay = this.$(".overlay");
-      this.$content = this.$(".content");
-      this.$container = this.$(".container");
-      this.$close = this.$(".close");
-      this.$prev = this.$(".prev");
-      this.$next = this.$(".next");
-      this.$body = this.$(".body");
+      this.$overlay = this.$(".lightbox-overlay");
+      this.$content = this.$(".lightbox-content");
+      this.$container = this.$(".lightbox-container");
+      this.$close = this.$(".lightbox-close");
+      this.$prev = this.$(".lightbox-prev");
+      this.$next = this.$(".lightbox-next");
+      this.$body = this.$(".lightbox-body");
       this.width = this.settings.dimensions.width;
       this.height = this.settings.dimensions.height;
       this.align();
@@ -228,8 +228,8 @@ Copyright 2013 Kevin Sylvestre
     Lightbox.prototype.setup = function() {
       $(window).on("resize", this.align);
       $(document).on("keyup", this.keyup);
-      this.$close.on("click", this.close);
       this.$overlay.on("click", this.close);
+      this.$close.on("click", this.close);
       this.$next.on("click", this.next);
       return this.$prev.on("click", this.prev);
     };
@@ -237,8 +237,8 @@ Copyright 2013 Kevin Sylvestre
     Lightbox.prototype.clear = function() {
       $(window).off("resize", this.align);
       $(document).off("keyup", this.keyup);
-      this.$close.off("click", this.close);
       this.$overlay.off("click", this.close);
+      this.$close.off("click", this.close);
       this.$next.off("click", this.next);
       return this.$prev.off("click", this.prev);
     };

@@ -18,16 +18,16 @@ $namespace: "lightbox"
   opacity: 1.0
   &.fade
     opacity: 0.0
-    .container
+    .#{$namespace}-container
       +transform(scale(0.5))
   img
     width: 100%
     height: 100%
-  .overlay
+  .#{$namespace}-overlay
     background: rgba($black, 0.5)
     height: 100%
     width: 100%
-  .container
+  .#{$namespace}-container
     background: #FFF
     position: absolute
     z-index: 4000
@@ -36,16 +36,7 @@ $namespace: "lightbox"
     right:  50%
     bottom: 50%
     +box-shadow(0px 2px 8px rgba($black, 0.5))
-    .caption
-      color: #FFF
-      position: absolute
-      z-index: 8000
-      padding: 20px
-      bottom: 0px
-      left: 0px
-      right: 0px
-      background: rgba($black, 0.5)
-    .close
+    .#{$namespace}-close
       top: 0
       left: 0
       width: 30px
@@ -54,7 +45,7 @@ $namespace: "lightbox"
       line-height: 28px
       font-size: 16pt
       font-family: Helvetica, Arial, serif
-    .next
+    .#{$namespace}-next
       display: none
       right: 40px
       top: 50%
@@ -64,7 +55,7 @@ $namespace: "lightbox"
       line-height: 34px
       font-size: 32pt
       font-family: Times, serif
-    .prev
+    .#{$namespace}-prev
       display: none
       left: 40px
       top: 50%
@@ -74,9 +65,9 @@ $namespace: "lightbox"
       line-height: 24pt
       font-size: 34px
       font-family: Times, serif
-    .next,
-    .prev,
-    .close
+    .#{$namespace}-next,
+    .#{$namespace}-prev,
+    .#{$namespace}-close
       cursor: pointer
       position: absolute
       z-index: 8000
@@ -85,7 +76,6 @@ $namespace: "lightbox"
       color: rgba(255, 255, 255, 0.8)
       background: rgba($black, 0.2)
       +user-select
-      +transition(all 0.2s ease-in-out)
       &:hover
         color: rgba($white, 1.0)
         background: rgba($black, 0.6)

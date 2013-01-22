@@ -15,7 +15,7 @@
   opacity: 1; }
   .lightbox.fade {
     opacity: 0; }
-    .lightbox.fade .container {
+    .lightbox.fade .lightbox-container {
       -webkit-transform: scale(0.5);
       -moz-transform: scale(0.5);
       -ms-transform: scale(0.5);
@@ -24,11 +24,11 @@
   .lightbox img {
     width: 100%;
     height: 100%; }
-  .lightbox .overlay {
+  .lightbox .lightbox-overlay {
     background: rgba(0, 0, 0, 0.5);
     height: 100%;
     width: 100%; }
-  .lightbox .container {
+  .lightbox .lightbox-container {
     background: white;
     position: absolute;
     z-index: 4000;
@@ -38,16 +38,7 @@
     bottom: 50%;
     -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5); }
-    .lightbox .container .caption {
-      color: white;
-      position: absolute;
-      z-index: 8000;
-      padding: 20px;
-      bottom: 0px;
-      left: 0px;
-      right: 0px;
-      background: rgba(0, 0, 0, 0.5); }
-    .lightbox .container .close {
+    .lightbox .lightbox-container .lightbox-close {
       top: 0;
       left: 0;
       width: 30px;
@@ -56,7 +47,7 @@
       line-height: 28px;
       font-size: 16pt;
       font-family: Helvetica, Arial, serif; }
-    .lightbox .container .next {
+    .lightbox .lightbox-container .lightbox-next {
       display: none;
       right: 40px;
       top: 50%;
@@ -66,7 +57,7 @@
       line-height: 34px;
       font-size: 32pt;
       font-family: Times, serif; }
-    .lightbox .container .prev {
+    .lightbox .lightbox-container .lightbox-prev {
       display: none;
       left: 40px;
       top: 50%;
@@ -76,9 +67,9 @@
       line-height: 24pt;
       font-size: 34px;
       font-family: Times, serif; }
-    .lightbox .container .next,
-    .lightbox .container .prev,
-    .lightbox .container .close {
+    .lightbox .lightbox-container .lightbox-next,
+    .lightbox .lightbox-container .lightbox-prev,
+    .lightbox .lightbox-container .lightbox-close {
       cursor: pointer;
       position: absolute;
       z-index: 8000;
@@ -89,19 +80,14 @@
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
-      user-select: none;
-      -webkit-transition: all 0.2s ease-in-out;
-      -moz-transition: all 0.2s ease-in-out;
-      -ms-transition: all 0.2s ease-in-out;
-      -o-transition: all 0.2s ease-in-out;
-      transition: all 0.2s ease-in-out; }
-      .lightbox .container .next:hover,
-      .lightbox .container .prev:hover,
-      .lightbox .container .close:hover {
+      user-select: none; }
+      .lightbox .lightbox-container .lightbox-next:hover,
+      .lightbox .lightbox-container .lightbox-prev:hover,
+      .lightbox .lightbox-container .lightbox-close:hover {
         color: white;
         background: rgba(0, 0, 0, 0.6); }
-      .lightbox .container .next:active,
-      .lightbox .container .prev:active,
-      .lightbox .container .close:active {
+      .lightbox .lightbox-container .lightbox-next:active,
+      .lightbox .lightbox-container .lightbox-prev:active,
+      .lightbox .lightbox-container .lightbox-close:active {
         color: white;
         background: rgba(0, 0, 0, 0.6); }

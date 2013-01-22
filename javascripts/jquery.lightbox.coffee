@@ -36,13 +36,13 @@ class Lightbox
   template:
     """
     <div class='lightbox fade'>
-      <div class='container'>
-        <span class='content'></span>
-        <a class='close'>&times;</a>
-        <a class='prev'>&lsaquo;</a>
-        <a class='next'>&rsaquo;</a>
+      <div class='lightbox-container'>
+        <span class='lightbox-content'></span>
+        <a class='lightbox-close'>&times;</a>
+        <a class='lightbox-prev'>&lsaquo;</a>
+        <a class='lightbox-next'>&rsaquo;</a>
       </div>
-      <div class='overlay'></div>
+      <div class='lightbox-overlay'></div>
     </div>
     """
 
@@ -55,14 +55,14 @@ class Lightbox
 
     @$lightbox = $(@template)
 
-    @$overlay = @$(".overlay")
-    @$content = @$(".content")
-    @$container = @$(".container")
+    @$overlay = @$(".lightbox-overlay")
+    @$content = @$(".lightbox-content")
+    @$container = @$(".lightbox-container")
 
-    @$close = @$(".close")
-    @$prev = @$(".prev")
-    @$next = @$(".next")
-    @$body = @$(".body")
+    @$close = @$(".lightbox-close")
+    @$prev = @$(".lightbox-prev")
+    @$next = @$(".lightbox-next")
+    @$body = @$(".lightbox-body")
 
     @width = @settings.dimensions.width
     @height = @settings.dimensions.height
@@ -131,16 +131,16 @@ class Lightbox
   setup: =>
     $(window).on "resize", @align
     $(document).on "keyup", @keyup
-    @$close.on "click", @close
     @$overlay.on "click", @close
+    @$close.on "click", @close
     @$next.on "click", @next
     @$prev.on "click", @prev
 
   clear: =>
     $(window).off "resize", @align
     $(document).off "keyup", @keyup
-    @$close.off "click", @close
     @$overlay.off "click", @close
+    @$close.off "click", @close
     @$next.off "click", @next
     @$prev.off "click", @prev
 
