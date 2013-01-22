@@ -1,10 +1,10 @@
 # jQuery Lightbox
 
-Lightbox is a jQuery plugin designed to provide a zoom. Lightbox supports basic animations.
+Lightbox is a jQuery plugin designed to provide gallery view for images.
 
 ## Installation
 
-To install copy the *images*, *javascripts*, and *stylesheets* directories into your project and add the following snippet to the header:
+To install copy the *javascripts* and *stylesheets* directories into your project and add the following snippet to the header:
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
     <script src="javascripts/jquery.lightbox.js" type="text/javascript"></script>
