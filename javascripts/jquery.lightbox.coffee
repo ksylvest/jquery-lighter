@@ -46,7 +46,6 @@ class Lightbox
     """
 
   $: (selector) =>
-    @$lightbox ?= $(".lightbox")
     @$lightbox.find(selector)
 
   constructor: ($el, settings = {}) ->
@@ -54,7 +53,6 @@ class Lightbox
     @settings = $.extend {}, Lightbox.settings, settings
 
     @$lightbox = $(@template)
-    $("body").append @$lightbox
 
     @$overlay = @$(".overlay")
     @$content = @$(".content")
@@ -71,10 +69,11 @@ class Lightbox
   close: (event) =>
     event.preventDefault()
     event.stopPropagation()
-    @$hide()
+    @hide()
 
   next: =>
     
+
   prev: =>
     
 
@@ -97,10 +96,16 @@ class Lightbox
   resize: (width, height) =>
 
   setup: =>
-    @$close.on "click", @hide
+    @$close.on "click", @close
+    @$overlay.on "click", @close
+    @$next.on "click", @next
+    @$prev.on "click", @prev
 
   clear: =>
-    @$close.off "click", @hide
+    @$close.off "click", @close
+    @$overlay.off "click", @close
+    @$next.off "click", @next
+    @$prev.off "click", @prev
 
   align: =>
     @$container.css
@@ -110,7 +115,7 @@ class Lightbox
 
   hide: =>
     alpha = @clear
-    omega = => @$lightbox.hide()
+    omega = => @$lightbox.remove()
 
     alpha()
     @$lightbox.position()
@@ -119,7 +124,7 @@ class Lightbox
 
   show: =>
     omega = @setup
-    alpha = => @$lightbox.show()
+    alpha = => $(document.body).append @$lightbox
 
     alpha()
     @$lightbox.position()

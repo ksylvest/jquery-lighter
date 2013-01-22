@@ -71,10 +71,6 @@ Copyright 2013 Kevin Sylvestre
     Lightbox.prototype.template = "<div class='lightbox fade'>\n  <div class='container'>\n    <span class='content'></span>\n    <a class='close'>&times;</a>\n    <a class='prev'>&lsaquo;</a>\n    <a class='next'>&rsaquo;</a>\n  </div>\n  <div class='overlay'></div>\n</div>";
 
     Lightbox.prototype.$ = function(selector) {
-      var _ref;
-      if ((_ref = this.$lightbox) == null) {
-        this.$lightbox = $(".lightbox");
-      }
       return this.$lightbox.find(selector);
     };
 
@@ -113,7 +109,6 @@ Copyright 2013 Kevin Sylvestre
       this.$el = $el;
       this.settings = $.extend({}, Lightbox.settings, settings);
       this.$lightbox = $(this.template);
-      $("body").append(this.$lightbox);
       this.$overlay = this.$(".overlay");
       this.$content = this.$(".content");
       this.$container = this.$(".container");
@@ -128,7 +123,7 @@ Copyright 2013 Kevin Sylvestre
     Lightbox.prototype.close = function(event) {
       event.preventDefault();
       event.stopPropagation();
-      return this.$hide();
+      return this.hide();
     };
 
     Lightbox.prototype.next = function() {};
@@ -168,11 +163,17 @@ Copyright 2013 Kevin Sylvestre
     Lightbox.prototype.resize = function(width, height) {};
 
     Lightbox.prototype.setup = function() {
-      return this.$close.on("click", this.hide);
+      this.$close.on("click", this.close);
+      this.$overlay.on("click", this.close);
+      this.$next.on("click", this.next);
+      return this.$prev.on("click", this.prev);
     };
 
     Lightbox.prototype.clear = function() {
-      return this.$close.off("click", this.hide);
+      this.$close.off("click", this.close);
+      this.$overlay.off("click", this.close);
+      this.$next.off("click", this.next);
+      return this.$prev.off("click", this.prev);
     };
 
     Lightbox.prototype.align = function() {
@@ -188,7 +189,7 @@ Copyright 2013 Kevin Sylvestre
         _this = this;
       alpha = this.clear;
       omega = function() {
-        return _this.$lightbox.hide();
+        return _this.$lightbox.remove();
       };
       alpha();
       this.$lightbox.position();
@@ -201,7 +202,7 @@ Copyright 2013 Kevin Sylvestre
         _this = this;
       omega = this.setup;
       alpha = function() {
-        return _this.$lightbox.show();
+        return $(document.body).append(_this.$lightbox);
       };
       alpha();
       this.$lightbox.position();
