@@ -5,10 +5,10 @@ PROJECT = "jquery.lightbox"
 command = (name, args...) ->
   proc = spawn name, args
 
-  proc.stderr.on "data", (buffer) -> 
+  proc.stderr.on "data", (buffer) ->
     console.log buffer.toString()
 
-  proc.stdout.on "data", (buffer) -> 
+  proc.stdout.on "data", (buffer) ->
     console.log buffer.toString()
 
   proc.on "exit", (status) -> process.exit(1) if status != 0
