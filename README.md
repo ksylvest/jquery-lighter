@@ -9,7 +9,7 @@ To install copy the *images*, *javascripts*, and *stylesheets* directories into 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
     <script src="javascripts/jquery.lightbox.js" type="text/javascript"></script>
     <link href="stylesheets/jquery.lightbox.css" rel="stylesheet" type="text/css" />
-  
+
 ## Examples
 
 Setting up a lightbox is easy. The following snippet is a good start:
