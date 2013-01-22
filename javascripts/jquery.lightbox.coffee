@@ -25,6 +25,7 @@ class Animation
 
 class Lightbox
   @settings:
+    padding: 40
     dimensions:
       width:  960
       height: 540
@@ -63,19 +64,26 @@ class Lightbox
     @$next = @$(".next")
     @$body = @$(".body")
 
+    @width = @settings.dimensions.width
+    @height = @settings.dimensions.height
+
     @align()
     @process()
 
   close: (event) =>
-    event.preventDefault()
-    event.stopPropagation()
+    event?.preventDefault()
+    event?.stopPropagation()
     @hide()
 
-  next: =>
-    
+  next: (event) =>
+    event?.preventDefault()
+    event?.stopPropagation()
+    # TODO
 
   prev: =>
-    
+    event?.preventDefault()
+    event?.stopPropagation()
+    # TODO
 
   image: (href) =>
     href.match(/\.(jpeg|jpg|jpe|gif|png|bmp)$/i)
@@ -93,25 +101,48 @@ class Lightbox
       when "image" then $("<img />").attr(src: href)
       else $(href)
 
+    switch type
+      when "image"
+        image = new Image()
+        image.src = href
+        image.onload = => @resize(image.width, image.height)
+
   resize: (width, height) =>
+    @width = width
+    @height = height
+    @align()
+
+  align: =>
+    ratio = Math.max ((height = @height) / ($(window).height() - @settings.padding)) , ((width  = @width ) / ($(window).width()  - @settings.padding))
+    height = Math.round(height / ratio) if ratio > 1.0
+    width  = Math.round(width  / ratio) if ratio > 1.0
+
+    @$container.css
+      height: height
+      width: width
+      margin: "-#{height / 2}px -#{width / 2}px"
+
+  keyup: (event) =>
+    return if event.target.form?
+    @close() if event.which is 27 # esc
+    @prev() if event.which is 37 # l-arrow
+    @next() if event.which is 39 # r-arrow
 
   setup: =>
+    $(window).on "resize", @align
+    $(document).on "keyup", @keyup
     @$close.on "click", @close
     @$overlay.on "click", @close
     @$next.on "click", @next
     @$prev.on "click", @prev
 
   clear: =>
+    $(window).off "resize", @align
+    $(document).off "keyup", @keyup
     @$close.off "click", @close
     @$overlay.off "click", @close
     @$next.off "click", @next
     @$prev.off "click", @prev
-
-  align: =>
-    @$container.css
-      height: @settings.dimensions.height
-      width:  @settings.dimensions.width
-      margin: "-#{@settings.dimensions.height / 2}px -#{@settings.dimensions.width / 2}px"
 
   hide: =>
     alpha = @clear

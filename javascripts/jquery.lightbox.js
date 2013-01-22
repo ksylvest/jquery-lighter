@@ -55,6 +55,7 @@ Copyright 2013 Kevin Sylvestre
   Lightbox = (function() {
 
     Lightbox.settings = {
+      padding: 40,
       dimensions: {
         width: 960,
         height: 540
@@ -82,11 +83,13 @@ Copyright 2013 Kevin Sylvestre
 
       this.hide = __bind(this.hide, this);
 
-      this.align = __bind(this.align, this);
-
       this.clear = __bind(this.clear, this);
 
       this.setup = __bind(this.setup, this);
+
+      this.keyup = __bind(this.keyup, this);
+
+      this.align = __bind(this.align, this);
 
       this.resize = __bind(this.resize, this);
 
@@ -116,19 +119,35 @@ Copyright 2013 Kevin Sylvestre
       this.$prev = this.$(".prev");
       this.$next = this.$(".next");
       this.$body = this.$(".body");
+      this.width = this.settings.dimensions.width;
+      this.height = this.settings.dimensions.height;
       this.align();
       this.process();
     }
 
     Lightbox.prototype.close = function(event) {
-      event.preventDefault();
-      event.stopPropagation();
+      if (event != null) {
+        event.preventDefault();
+      }
+      if (event != null) {
+        event.stopPropagation();
+      }
       return this.hide();
     };
 
-    Lightbox.prototype.next = function() {};
+    Lightbox.prototype.next = function(event) {
+      if (event != null) {
+        event.preventDefault();
+      }
+      return event != null ? event.stopPropagation() : void 0;
+    };
 
-    Lightbox.prototype.prev = function() {};
+    Lightbox.prototype.prev = function() {
+      if (typeof event !== "undefined" && event !== null) {
+        event.preventDefault();
+      }
+      return typeof event !== "undefined" && event !== null ? event.stopPropagation() : void 0;
+    };
 
     Lightbox.prototype.image = function(href) {
       return href.match(/\.(jpeg|jpg|jpe|gif|png|bmp)$/i);
@@ -146,9 +165,10 @@ Copyright 2013 Kevin Sylvestre
     };
 
     Lightbox.prototype.process = function() {
-      var href, type;
+      var href, image, type,
+        _this = this;
       type = this.type(href = this.href());
-      return this.$content.html((function() {
+      this.$content.html((function() {
         switch (type) {
           case "image":
             return $("<img />").attr({
@@ -158,11 +178,56 @@ Copyright 2013 Kevin Sylvestre
             return $(href);
         }
       })());
+      switch (type) {
+        case "image":
+          image = new Image();
+          image.src = href;
+          return image.onload = function() {
+            return _this.resize(image.width, image.height);
+          };
+      }
     };
 
-    Lightbox.prototype.resize = function(width, height) {};
+    Lightbox.prototype.resize = function(width, height) {
+      this.width = width;
+      this.height = height;
+      return this.align();
+    };
+
+    Lightbox.prototype.align = function() {
+      var height, ratio, width;
+      ratio = Math.max((height = this.height) / ($(window).height() - this.settings.padding), (width = this.width) / ($(window).width() - this.settings.padding));
+      if (ratio > 1.0) {
+        height = Math.round(height / ratio);
+      }
+      if (ratio > 1.0) {
+        width = Math.round(width / ratio);
+      }
+      return this.$container.css({
+        height: height,
+        width: width,
+        margin: "-" + (height / 2) + "px -" + (width / 2) + "px"
+      });
+    };
+
+    Lightbox.prototype.keyup = function(event) {
+      if (event.target.form != null) {
+        return;
+      }
+      if (event.which === 27) {
+        this.close();
+      }
+      if (event.which === 37) {
+        this.prev();
+      }
+      if (event.which === 39) {
+        return this.next();
+      }
+    };
 
     Lightbox.prototype.setup = function() {
+      $(window).on("resize", this.align);
+      $(document).on("keyup", this.keyup);
       this.$close.on("click", this.close);
       this.$overlay.on("click", this.close);
       this.$next.on("click", this.next);
@@ -170,18 +235,12 @@ Copyright 2013 Kevin Sylvestre
     };
 
     Lightbox.prototype.clear = function() {
+      $(window).off("resize", this.align);
+      $(document).off("keyup", this.keyup);
       this.$close.off("click", this.close);
       this.$overlay.off("click", this.close);
       this.$next.off("click", this.next);
       return this.$prev.off("click", this.prev);
-    };
-
-    Lightbox.prototype.align = function() {
-      return this.$container.css({
-        height: this.settings.dimensions.height,
-        width: this.settings.dimensions.width,
-        margin: "-" + (this.settings.dimensions.height / 2) + "px -" + (this.settings.dimensions.width / 2) + "px"
-      });
     };
 
     Lightbox.prototype.hide = function() {
