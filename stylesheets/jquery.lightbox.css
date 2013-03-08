@@ -36,7 +36,6 @@
     left: 50%;
     right: 50%;
     bottom: 50%;
-    -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5); }
     .lightbox .lightbox-container .lightbox-close {
       top: 0;
