@@ -6,7 +6,7 @@ Lightbox is a jQuery plugin designed to provide gallery view for images.
 
 To install copy the *javascripts* and *stylesheets* directories into your project and add the following snippet to the header:
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
     <script src="javascripts/jquery.lightbox.js" type="text/javascript"></script>
     <link href="stylesheets/jquery.lightbox.css" rel="stylesheet" type="text/css" />
 
