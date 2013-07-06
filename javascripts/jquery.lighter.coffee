@@ -1,5 +1,5 @@
 ###
-jQuery Lightbox
+jQuery Lighter
 Copyright 2013 Kevin Sylvestre
 1.0.4
 ###
@@ -24,46 +24,52 @@ class Animation
     transition = @transition($el)
     if transition? then $el.one(transition, callback) else callback()
 
-class Lightbox
+class Lighter
   @settings:
     padding: 40
     dimensions:
       width:  960
       height: 540
 
-  @lightbox: ($el, options = {}) ->
-    new Lightbox($el, options)
+  @lighter: ($el, options = {}) ->
+    new Lighter($el, options)
 
   template:
     """
-    <div class='lightbox fade'>
-      <div class='lightbox-container'>
-        <span class='lightbox-content'></span>
-        <a class='lightbox-close'>&times;</a>
-        <a class='lightbox-prev'>&lsaquo;</a>
-        <a class='lightbox-next'>&rsaquo;</a>
+    <div class='lighter fade'>
+      <div class='lighter-container'>
+        <span class='lighter-content'></span>
+        <a class='lighter-close'>&times;</a>
+        <a class='lighter-prev'>&lsaquo;</a>
+        <a class='lighter-next'>&rsaquo;</a>
       </div>
-      <div class='lightbox-overlay'></div>
+      <div class='lighter-overlay'></div>
     </div>
     """
 
   $: (selector) =>
-    @$lightbox.find(selector)
+    @$lighter.find(selector)
 
   constructor: ($el, settings = {}) ->
     @$el = $el
-    @settings = $.extend {}, Lightbox.settings, settings
 
-    @$lightbox = $(@template)
+    if @$el.data('width')? and @$el.data('height')?
+      settings.dimensions ?=
+        width:  @$el.data('width')
+        height: @$el.data('height')
 
-    @$overlay = @$(".lightbox-overlay")
-    @$content = @$(".lightbox-content")
-    @$container = @$(".lightbox-container")
+    @settings = $.extend {}, Lighter.settings, settings
 
-    @$close = @$(".lightbox-close")
-    @$prev = @$(".lightbox-prev")
-    @$next = @$(".lightbox-next")
-    @$body = @$(".lightbox-body")
+    @$lighter = $(@template)
+
+    @$overlay = @$(".lighter-overlay")
+    @$content = @$(".lighter-content")
+    @$container = @$(".lighter-container")
+
+    @$close = @$(".lighter-close")
+    @$prev = @$(".lighter-prev")
+    @$next = @$(".lighter-next")
+    @$body = @$(".lighter-body")
 
     @width = @settings.dimensions.width
     @height = @settings.dimensions.height
@@ -147,35 +153,35 @@ class Lightbox
 
   hide: =>
     alpha = @clear
-    omega = => @$lightbox.remove()
+    omega = => @$lighter.remove()
 
     alpha()
-    @$lightbox.position()
-    @$lightbox.addClass('fade')
-    Animation.execute(@$lightbox, omega)
+    @$lighter.position()
+    @$lighter.addClass('fade')
+    Animation.execute(@$lighter, omega)
 
   show: =>
     omega = @setup
-    alpha = => $(document.body).append @$lightbox
+    alpha = => $(document.body).append @$lighter
 
     alpha()
-    @$lightbox.position()
-    @$lightbox.removeClass('fade')
-    Animation.execute(@$lightbox, omega)
+    @$lighter.position()
+    @$lighter.removeClass('fade')
+    Animation.execute(@$lighter, omega)
 
 $.fn.extend
-  lightbox: (option = {}) ->
+  lighter: (option = {}) ->
     @each ->
       $this = $(@)
 
-      options = $.extend {}, $.fn.lightbox.defaults, typeof option is "object" and option
+      options = $.extend {}, $.fn.lighter.defaults, typeof option is "object" and option
       action = if typeof option is "string" then option else option.action
       action ?= "show"
 
-      Lightbox.lightbox($this, options)[action]()
+      Lighter.lighter($this, options)[action]()
 
-$(document).on "click", "[data-lightbox]", (event) ->
+$(document).on "click", "[data-lighter]", (event) ->
   event.preventDefault()
   event.stopPropagation()
 
-  $(this).lightbox("show")
+  $(this).lighter("show")

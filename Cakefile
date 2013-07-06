@@ -1,4 +1,4 @@
-PROJECT = "jquery.lightbox"
+PROJECT = "jquery.lighter"
 
 {spawn, exec} = require "child_process"
 

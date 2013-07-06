@@ -2,12 +2,12 @@
 <html>
   <head>
     <meta charset='UTF-8'>
-      <title>jQuery Lightbox</title>
+      <title>jQuery Lighter</title>
       <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-      <link href='stylesheets/jquery.lightbox.css' rel='stylesheet' type='text/css'>
+      <link href='stylesheets/jquery.lighter.css' rel='stylesheet' type='text/css'>
       <link href='stylesheets/sample.css' rel='stylesheet' type='text/css'>
       <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js' type='text/javascript'></script>
-      <script src='javascripts/jquery.lightbox.js' type='text/javascript'></script>
+      <script src='javascripts/jquery.lighter.js' type='text/javascript'></script>
       <script src='javascripts/sample.js' type='text/javascript'></script>
       <script src='javascripts/rainbow.js' type='text/javascript'></script>
       <script>
@@ -25,48 +25,48 @@
   </head>
   <body>
     <div class='content'>
-      <a href='https://github.com/ksylvest/jquery-lightbox'>
+      <a href='https://github.com/ksylvest/jquery-lighter'>
         <img alt='Fork' class='fork' src='images/fork.png'>
       </a>
-      <h1>jQuery Lightbox</h1>
-      <p>Lightbox is a jQuery plugin designed to provide gallery view for images.</p>
+      <h1>jQuery Lighter</h1>
+      <p>Lighter is a jQuery plugin designed to provide gallery view for images.</p>
       <h2>Example</h2>
       <section class='examples'>
         <div class='example'>
-          <a class='sample' data-lightbox='samples/sample-01.jpg' href='samples/sample-01.jpg'>
+          <a class='sample' data-height='720' data-lighter='samples/sample-01.jpg' data-width='1280' href='samples/sample-01.jpg'>
             <img src='samples/preview-01.jpg'>
           </a>
         </div>
         <div class='example'>
-          <a class='sample' data-lightbox='samples/sample-02.jpg' href='samples/sample-02.jpg'>
+          <a class='sample' data-height='720' data-lighter='samples/sample-02.jpg' data-width='1280' href='samples/sample-02.jpg'>
             <img src='samples/preview-02.jpg'>
           </a>
         </div>
         <div class='example'>
-          <a class='sample' data-lightbox='samples/sample-03.jpg' href='samples/sample-03.jpg'>
+          <a class='sample' data-height='720' data-lighter='samples/sample-03.jpg' data-width='1280' href='samples/sample-03.jpg'>
             <img src='samples/preview-03.jpg'>
           </a>
         </div>
         <div class='example'>
-          <a class='sample' data-lightbox='samples/sample-04.jpg' href='samples/sample-04.jpg'>
+          <a class='sample' data-height='720' data-lighter='samples/sample-04.jpg' data-width='1280' href='samples/sample-04.jpg'>
             <img src='samples/preview-04.jpg'>
           </a>
         </div>
       </section>
       <h2>Installation</h2>
-      <p>To install download one of these packages and include the jquery.lightbox.js and jquery.lightbox.css files in your head with the following:</p>
+      <p>To install download one of these packages and include the jquery.lighter.js and jquery.lighter.css files in your head with the following:</p>
       <section class='formats'>
         <div class='format'>
-          <a class='zip' href='packages/jquery.lightbox.zip'></a>
+          <a class='zip' href='packages/jquery.lighter.zip'></a>
         </div>
         <div class='format'>
-          <a class='tar' href='packages/jquery.lightbox.tar'></a>
+          <a class='tar' href='packages/jquery.lighter.tar'></a>
         </div>
       </section>
-      <pre><code data-language='html'>&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&#x000A;&lt;script src=&quot;javascript/jquery.lightbox.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&#x000A;&lt;link href=&quot;stylesheets/jquery.lightbox.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;</code></pre>
+      <pre><code data-language='html'>&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&#x000A;&lt;script src=&quot;javascript/jquery.lighter.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&#x000A;&lt;link href=&quot;stylesheets/jquery.lighter.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;</code></pre>
       <h2>Example</h2>
-      <p>Setting up a lightbox is easy. The following snippet is a good start:</p>
-      <pre><code data-language='html'>&lt;a href=&quot;samples/sample-01.jpg&quot; data-lightbox&gt;&#x000A;  &lt;img src=&quot;samples/preview-01.jpg&quot; /&gt;&#x000A;&lt;/a&gt;&#x000A;&lt;a href=&quot;samples/sample-02.jpg&quot; data-lightbox&gt;&#x000A;  &lt;img src=&quot;samples/preview-02.jpg&quot; /&gt;&#x000A;&lt;/a&gt;&#x000A;&lt;a href=&quot;samples/sample-03.jpg&quot; data-lightbox&gt;&#x000A;  &lt;img src=&quot;samples/preview-03.jpg&quot; /&gt;&#x000A;&lt;/a&gt;&#x000A;&lt;a href=&quot;samples/sample-04.jpg&quot; data-lightbox&gt;&#x000A;  &lt;img src=&quot;samples/preview-04.jpg&quot; /&gt;&#x000A;&lt;/a&gt;&#x000A;&lt;a href=&quot;samples/sample-05.jpg&quot; data-lightbox&gt;&#x000A;  &lt;img src=&quot;samples/preview-05.jpg&quot; /&gt;&#x000A;&lt;/a&gt;&#x000A;&lt;a href=&quot;samples/sample-06.jpg&quot; data-lightbox&gt;&#x000A;  &lt;img src=&quot;samples/preview-06.jpg&quot; /&gt;&#x000A;&lt;/a&gt;</code></pre>
+      <p>Setting up a lighter is easy. The following snippet is a good start:</p>
+      <pre><code data-language='html'>&lt;a href=&quot;samples/sample-01.jpg&quot; data-lighter&gt;&#x000A;  &lt;img src=&quot;samples/preview-01.jpg&quot; /&gt;&#x000A;&lt;/a&gt;&#x000A;&lt;a href=&quot;samples/sample-02.jpg&quot; data-lighter&gt;&#x000A;  &lt;img src=&quot;samples/preview-02.jpg&quot; /&gt;&#x000A;&lt;/a&gt;&#x000A;&lt;a href=&quot;samples/sample-03.jpg&quot; data-lighter&gt;&#x000A;  &lt;img src=&quot;samples/preview-03.jpg&quot; /&gt;&#x000A;&lt;/a&gt;&#x000A;&lt;a href=&quot;samples/sample-04.jpg&quot; data-lighter&gt;&#x000A;  &lt;img src=&quot;samples/preview-04.jpg&quot; /&gt;&#x000A;&lt;/a&gt;&#x000A;&lt;a href=&quot;samples/sample-05.jpg&quot; data-lighter&gt;&#x000A;  &lt;img src=&quot;samples/preview-05.jpg&quot; /&gt;&#x000A;&lt;/a&gt;&#x000A;&lt;a href=&quot;samples/sample-06.jpg&quot; data-lighter&gt;&#x000A;  &lt;img src=&quot;samples/preview-06.jpg&quot; /&gt;&#x000A;&lt;/a&gt;</code></pre>
       <p>Copyright (c) 2010 - 2013 Kevin Sylvestre.</p>
     </div>
   </body>
