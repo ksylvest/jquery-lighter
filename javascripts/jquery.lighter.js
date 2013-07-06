@@ -60,10 +60,16 @@ Copyright 2013 Kevin Sylvestre
     };
 
     Lighter.lighter = function($el, options) {
+      var data;
       if (options == null) {
         options = {};
       }
-      return new Lighter($el, options);
+      data = $el.data('_lighter');
+      if (!data) {
+        data = new Lighter($el, options);
+        $el.data('_lighter', data);
+      }
+      return data;
     };
 
     Lighter.prototype.template = "<div class='lighter fade'>\n  <div class='lighter-container'>\n    <span class='lighter-content'></span>\n    <a class='lighter-close'>&times;</a>\n    <a class='lighter-prev'>&lsaquo;</a>\n    <a class='lighter-next'>&rsaquo;</a>\n  </div>\n  <div class='lighter-overlay'></div>\n</div>";
@@ -78,8 +84,7 @@ Copyright 2013 Kevin Sylvestre
       }
       this.show = __bind(this.show, this);
       this.hide = __bind(this.hide, this);
-      this.clear = __bind(this.clear, this);
-      this.setup = __bind(this.setup, this);
+      this.toggle = __bind(this.toggle, this);
       this.keyup = __bind(this.keyup, this);
       this.align = __bind(this.align, this);
       this.resize = __bind(this.resize, this);
@@ -215,28 +220,24 @@ Copyright 2013 Kevin Sylvestre
       }
     };
 
-    Lighter.prototype.setup = function() {
-      $(window).on("resize", this.align);
-      $(document).on("keyup", this.keyup);
-      this.$overlay.on("click", this.close);
-      this.$close.on("click", this.close);
-      this.$next.on("click", this.next);
-      return this.$prev.on("click", this.prev);
-    };
-
-    Lighter.prototype.clear = function() {
-      $(window).off("resize", this.align);
-      $(document).off("keyup", this.keyup);
-      this.$overlay.off("click", this.close);
-      this.$close.off("click", this.close);
-      this.$next.off("click", this.next);
-      return this.$prev.off("click", this.prev);
+    Lighter.prototype.toggle = function(method) {
+      if (method == null) {
+        method = 'on';
+      }
+      $(window)[method]("resize", this.align);
+      $(document)[method]("keyup", this.keyup);
+      this.$overlay[method]("click", this.close);
+      this.$close[method]("click", this.close);
+      this.$next[method]("click", this.next);
+      return this.$prev[method]("click", this.prev);
     };
 
     Lighter.prototype.hide = function() {
       var alpha, omega,
         _this = this;
-      alpha = this.clear;
+      alpha = function() {
+        return _this.toggle('off');
+      };
       omega = function() {
         return _this.$lighter.remove();
       };
@@ -249,7 +250,9 @@ Copyright 2013 Kevin Sylvestre
     Lighter.prototype.show = function() {
       var alpha, omega,
         _this = this;
-      omega = this.setup;
+      omega = function() {
+        return _this.toggle('on');
+      };
       alpha = function() {
         return $(document.body).append(_this.$lighter);
       };
@@ -284,7 +287,7 @@ Copyright 2013 Kevin Sylvestre
   $(document).on("click", "[data-lighter]", function(event) {
     event.preventDefault();
     event.stopPropagation();
-    return $(this).lighter("show");
+    return $(this).lighter();
   });
 
 }).call(this);

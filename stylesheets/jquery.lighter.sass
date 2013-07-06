@@ -8,11 +8,12 @@
 
 $black: #000
 $white: #FFF
+$fast: 0.4s
 
 $namespace: "lighter"
 
 .lighter, .lighter *
-  +transition(all 0.4s ease-in-out)
+  +transition(all $fast ease-in-out)
 
 .lighter
   position: fixed

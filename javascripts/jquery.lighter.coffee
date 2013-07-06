@@ -32,7 +32,11 @@ class Lighter
       height: 540
 
   @lighter: ($el, options = {}) ->
-    new Lighter($el, options)
+    data = $el.data('_lighter')
+    unless data
+      data = new Lighter($el, options)
+      $el.data('_lighter', data)
+    return data
 
   template:
     """
@@ -135,24 +139,16 @@ class Lighter
     @prev() if event.which is 37 # l-arrow
     @next() if event.which is 39 # r-arrow
 
-  setup: =>
-    $(window).on "resize", @align
-    $(document).on "keyup", @keyup
-    @$overlay.on "click", @close
-    @$close.on "click", @close
-    @$next.on "click", @next
-    @$prev.on "click", @prev
-
-  clear: =>
-    $(window).off "resize", @align
-    $(document).off "keyup", @keyup
-    @$overlay.off "click", @close
-    @$close.off "click", @close
-    @$next.off "click", @next
-    @$prev.off "click", @prev
+  toggle: (method = 'on') =>
+    $(window)[method] "resize", @align
+    $(document)[method] "keyup", @keyup
+    @$overlay[method] "click", @close
+    @$close[method] "click", @close
+    @$next[method] "click", @next
+    @$prev[method] "click", @prev
 
   hide: =>
-    alpha = @clear
+    alpha = => @toggle('off')
     omega = => @$lighter.remove()
 
     alpha()
@@ -161,7 +157,7 @@ class Lighter
     Animation.execute(@$lighter, omega)
 
   show: =>
-    omega = @setup
+    omega = => @toggle('on')
     alpha = => $(document.body).append @$lighter
 
     alpha()
@@ -184,4 +180,4 @@ $(document).on "click", "[data-lighter]", (event) ->
   event.preventDefault()
   event.stopPropagation()
 
-  $(this).lighter("show")
+  $(this).lighter()
