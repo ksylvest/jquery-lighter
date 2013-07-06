@@ -9,10 +9,11 @@
     "image",
     "gallery"
   ],
-  "version": "1.0.7",
+  "version": "1.0.8",
   "author": {
     "name": "Kevin Sylvestre",
-    "url": "https://ksylvest.com/"
+    "email": "kevin@ksylvest.com",
+    "url": "http://ksylvest.com/"
   },
   "licenses": 
   [

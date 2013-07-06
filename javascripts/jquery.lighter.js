@@ -2,7 +2,7 @@
 /*
 jQuery Lighter
 Copyright 2013 Kevin Sylvestre
-1.0.7
+1.0.8
 */
 
 
@@ -244,7 +244,7 @@ Copyright 2013 Kevin Sylvestre
       this.$lighter.removeClass('fade');
       this.$lighter.position();
       this.$lighter.addClass('fade');
-      return Animation.execute(this.$lighter, omega);
+      return Animation.execute(this.$container, omega);
     };
 
     Lighter.prototype.show = function() {
@@ -260,7 +260,7 @@ Copyright 2013 Kevin Sylvestre
       this.$lighter.addClass('fade');
       this.$lighter.position();
       this.$lighter.removeClass('fade');
-      return Animation.execute(this.$lighter, omega);
+      return Animation.execute(this.$container, omega);
     };
 
     return Lighter;

@@ -1,7 +1,7 @@
 ###
 jQuery Lighter
 Copyright 2013 Kevin Sylvestre
-1.0.7
+1.0.8
 ###
 
 "use strict"
@@ -154,7 +154,7 @@ class Lighter
     @$lighter.removeClass('fade')
     @$lighter.position()
     @$lighter.addClass('fade')
-    Animation.execute(@$lighter, omega)
+    Animation.execute(@$container, omega)
 
   show: =>
     omega = => @toggle('on')
@@ -164,7 +164,7 @@ class Lighter
     @$lighter.addClass('fade')
     @$lighter.position()
     @$lighter.removeClass('fade')
-    Animation.execute(@$lighter, omega)
+    Animation.execute(@$container, omega)
 
 $.fn.extend
   lighter: (option = {}) ->
