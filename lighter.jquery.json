@@ -1,7 +1,7 @@
 {
   "name": "lighter",
   "title": "jQuery Lighter",
-  "description": "Lighter is a jQuery plugin created to provide zoomable images.",
+  "description": "Lighter is a jQuery plugin created to provide zoomable content like other lightbox plugins.",
   "keywords": 
   [
     "lightbox",
@@ -9,7 +9,7 @@
     "image",
     "gallery"
   ],
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": {
     "name": "Kevin Sylvestre",
     "url": "https://ksylvest.com/"

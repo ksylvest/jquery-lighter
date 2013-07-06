@@ -1,6 +1,6 @@
 # jQuery Lighter
 
-Lighter is a jQuery plugin designed to provide gallery view for images.
+Lighter is a jQuery plugin created to provide zoomable content like other lightbox plugins.
 
 ## Installation
 
