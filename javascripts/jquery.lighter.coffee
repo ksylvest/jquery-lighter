@@ -1,7 +1,7 @@
 ###
 jQuery Lighter
 Copyright 2013 Kevin Sylvestre
-1.0.4
+1.0.5
 ###
 
 "use strict"
