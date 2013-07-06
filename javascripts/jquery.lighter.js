@@ -120,8 +120,12 @@ Copyright 2013 Kevin Sylvestre
     }
 
     Lighter.prototype.close = function(event) {
-      event.preventDefault();
-      event.stopPropagation();
+      if (event != null) {
+        event.preventDefault();
+      }
+      if (event != null) {
+        event.stopPropagation();
+      }
       return this.hide();
     };
 
@@ -205,7 +209,7 @@ Copyright 2013 Kevin Sylvestre
         return;
       }
       if (event.which === 27) {
-        this.hide();
+        this.close();
       }
       if (event.which === 37) {
         this.prev();

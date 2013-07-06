@@ -81,8 +81,8 @@ class Lighter
     @process()
 
   close: (event) =>
-    event.preventDefault()
-    event.stopPropagation()
+    event?.preventDefault()
+    event?.stopPropagation()
     @hide()
 
   next: (event) =>
@@ -134,7 +134,7 @@ class Lighter
 
   keyup: (event) =>
     return if event.target.form?
-    @hide() if event.which is 27 # esc
+    @close() if event.which is 27 # esc
     @prev() if event.which is 37 # l-arrow
     @next() if event.which is 39 # r-arrow
 
