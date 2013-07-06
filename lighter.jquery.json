@@ -4,10 +4,12 @@
   "description": "Lighter is a jQuery plugin created to provide zoomable images.",
   "keywords": 
   [
-    "carousel",
-    "animation"
+    "lightbox",
+    "animation",
+    "image",
+    "gallery"
   ],
-  "version": "1.0.4",
+  "version": "1.0.6",
   "author": {
     "name": "Kevin Sylvestre",
     "url": "https://ksylvest.com/"
