@@ -30,6 +30,18 @@ class Lighter
     dimensions:
       width:  960
       height: 540
+    template:
+      """
+      <div class='lighter fade'>
+        <div class='lighter-container'>
+          <span class='lighter-content'></span>
+          <a class='lighter-close'>&times;</a>
+          <a class='lighter-prev'>&lsaquo;</a>
+          <a class='lighter-next'>&rsaquo;</a>
+        </div>
+        <div class='lighter-overlay'></div>
+      </div>
+      """
 
   @lighter: ($el, options = {}) ->
     data = $el.data('_lighter')
@@ -37,19 +49,6 @@ class Lighter
       data = new Lighter($el, options)
       $el.data('_lighter', data)
     return data
-
-  template:
-    """
-    <div class='lighter fade'>
-      <div class='lighter-container'>
-        <span class='lighter-content'></span>
-        <a class='lighter-close'>&times;</a>
-        <a class='lighter-prev'>&lsaquo;</a>
-        <a class='lighter-next'>&rsaquo;</a>
-      </div>
-      <div class='lighter-overlay'></div>
-    </div>
-    """
 
   $: (selector) =>
     @$lighter.find(selector)
@@ -64,7 +63,7 @@ class Lighter
 
     @settings = $.extend {}, Lighter.settings, settings
 
-    @$lighter = $(@template)
+    @$lighter = $(@settings.template)
 
     @$overlay = @$(".lighter-overlay")
     @$content = @$(".lighter-content")
@@ -82,8 +81,8 @@ class Lighter
     @process()
 
   close: (event) =>
-    event?.preventDefault()
-    event?.stopPropagation()
+    event.preventDefault()
+    event.stopPropagation()
     @hide()
 
   next: (event) =>
@@ -135,7 +134,7 @@ class Lighter
 
   keyup: (event) =>
     return if event.target.form?
-    @close() if event.which is 27 # esc
+    @hide() if event.which is 27 # esc
     @prev() if event.which is 37 # l-arrow
     @next() if event.which is 39 # r-arrow
 
@@ -152,6 +151,7 @@ class Lighter
     omega = => @$lighter.remove()
 
     alpha()
+    @$lighter.removeClass('fade')
     @$lighter.position()
     @$lighter.addClass('fade')
     Animation.execute(@$lighter, omega)
@@ -161,6 +161,7 @@ class Lighter
     alpha = => $(document.body).append @$lighter
 
     alpha()
+    @$lighter.addClass('fade')
     @$lighter.position()
     @$lighter.removeClass('fade')
     Animation.execute(@$lighter, omega)

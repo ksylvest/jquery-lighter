@@ -56,7 +56,8 @@ Copyright 2013 Kevin Sylvestre
       dimensions: {
         width: 960,
         height: 540
-      }
+      },
+      template: "<div class='lighter fade'>\n  <div class='lighter-container'>\n    <span class='lighter-content'></span>\n    <a class='lighter-close'>&times;</a>\n    <a class='lighter-prev'>&lsaquo;</a>\n    <a class='lighter-next'>&rsaquo;</a>\n  </div>\n  <div class='lighter-overlay'></div>\n</div>"
     };
 
     Lighter.lighter = function($el, options) {
@@ -71,8 +72,6 @@ Copyright 2013 Kevin Sylvestre
       }
       return data;
     };
-
-    Lighter.prototype.template = "<div class='lighter fade'>\n  <div class='lighter-container'>\n    <span class='lighter-content'></span>\n    <a class='lighter-close'>&times;</a>\n    <a class='lighter-prev'>&lsaquo;</a>\n    <a class='lighter-next'>&rsaquo;</a>\n  </div>\n  <div class='lighter-overlay'></div>\n</div>";
 
     Lighter.prototype.$ = function(selector) {
       return this.$lighter.find(selector);
@@ -106,7 +105,7 @@ Copyright 2013 Kevin Sylvestre
         }
       }
       this.settings = $.extend({}, Lighter.settings, settings);
-      this.$lighter = $(this.template);
+      this.$lighter = $(this.settings.template);
       this.$overlay = this.$(".lighter-overlay");
       this.$content = this.$(".lighter-content");
       this.$container = this.$(".lighter-container");
@@ -121,12 +120,8 @@ Copyright 2013 Kevin Sylvestre
     }
 
     Lighter.prototype.close = function(event) {
-      if (event != null) {
-        event.preventDefault();
-      }
-      if (event != null) {
-        event.stopPropagation();
-      }
+      event.preventDefault();
+      event.stopPropagation();
       return this.hide();
     };
 
@@ -210,7 +205,7 @@ Copyright 2013 Kevin Sylvestre
         return;
       }
       if (event.which === 27) {
-        this.close();
+        this.hide();
       }
       if (event.which === 37) {
         this.prev();
@@ -242,6 +237,7 @@ Copyright 2013 Kevin Sylvestre
         return _this.$lighter.remove();
       };
       alpha();
+      this.$lighter.removeClass('fade');
       this.$lighter.position();
       this.$lighter.addClass('fade');
       return Animation.execute(this.$lighter, omega);
@@ -257,6 +253,7 @@ Copyright 2013 Kevin Sylvestre
         return $(document.body).append(_this.$lighter);
       };
       alpha();
+      this.$lighter.addClass('fade');
       this.$lighter.position();
       this.$lighter.removeClass('fade');
       return Animation.execute(this.$lighter, omega);
