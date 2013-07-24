@@ -1,0 +1,21 @@
+{
+  "name": "lighter",
+  "version": "1.0.9",
+  "main": [ "./javascripts/jquery.lighter.js","./stylesheets/jquery.lighter.css" ],
+  "ignore": 
+  [
+    "**/*.sass",
+    "**/*.coffee",
+    "**/sample.*",
+    "**/rainbow.*",
+    "bourbon",
+    "neat",
+    "packages",
+    "images",
+    "Cakefile",
+    "Gemfile",
+    "Gemfile.*",
+    "index.*"
+  ],
+  "dependencies": { "jquery": "latest" }
+}
