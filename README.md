@@ -33,6 +33,10 @@ Setting up a lighter is easy. The following snippet is a good start:
       <img src="samples/preview-06.png" />
     </a>
 
+## Status
+
+[![Status](https://travis-ci.org/ksylvest/jquery-lighter.png)](https://travis-ci.org/ksylvest/jquery-lighter)
+
 ## Copyright
 
 Copyright (c) 2010 - 2013 Kevin Sylvestre. See LICENSE for details.
