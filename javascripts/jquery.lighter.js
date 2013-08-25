@@ -19,8 +19,8 @@ Copyright 2013 Kevin Sylvestre
     Animation.transitions = {
       "webkitTransition": "webkitTransitionEnd",
       "mozTransition": "mozTransitionEnd",
-      "msTransition": "msTransitionEnd",
       "oTransition": "oTransitionEnd",
+      "msTransition": "transitionend",
       "transition": "transitionend"
     };
 
