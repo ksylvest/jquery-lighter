@@ -2,7 +2,7 @@
 /*
 jQuery Lighter
 Copyright 2013 Kevin Sylvestre
-1.1.1
+1.1.2
 */
 
 
@@ -20,7 +20,6 @@ Copyright 2013 Kevin Sylvestre
       "webkitTransition": "webkitTransitionEnd",
       "mozTransition": "mozTransitionEnd",
       "oTransition": "oTransitionEnd",
-      "msTransition": "transitionend",
       "transition": "transitionend"
     };
 

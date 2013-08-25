@@ -1,7 +1,7 @@
 ###
 jQuery Lighter
 Copyright 2013 Kevin Sylvestre
-1.1.1
+1.1.2
 ###
 
 "use strict"
@@ -13,7 +13,6 @@ class Animation
     "webkitTransition": "webkitTransitionEnd"
     "mozTransition": "mozTransitionEnd"
     "oTransition": "oTransitionEnd"
-    "msTransition": "transitionend"
     "transition": "transitionend"
 
   @transition: ($el) ->
