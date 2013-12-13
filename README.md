@@ -10,6 +10,34 @@ To install copy the *javascripts* and *stylesheets* directories into your projec
     <script src="javascripts/jquery.lighter.js" type="text/javascript"></script>
     <link href="stylesheets/jquery.lighter.css" rel="stylesheet" type="text/css" />
 
+This plugin is also registered under http://bower.io/ to simplify integration. Try:
+
+    npm install -g bower
+    bower install lighter
+
+Lastly this plugin is registered as a https://rails-assets.org/ to simplify integration with Ruby on Rails applications:
+
+**Gemfile**
+
+    + source 'https://rails-assets.org'
+    ...
+    + gem 'rails-assets-lighter'
+
+**application.css**
+
+    /*
+     ...
+     *= require lighter
+     ...
+    */
+
+**application.js**
+
+    //= require jquery
+    ...
+    //= require lighter
+
+
 ## Examples
 
 Setting up a lighter is easy. The following snippet is a good start:
