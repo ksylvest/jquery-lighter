@@ -55,18 +55,16 @@ pre .string.value {
   color: #008800; }
 
 .examples {
-  *zoom: 1;
   max-width: 68em;
   margin-left: auto;
   margin-right: auto; }
-  .examples:before, .examples:after {
-    content: " ";
-    display: table; }
   .examples:after {
+    content: "";
+    display: table;
     clear: both; }
   .examples .example {
-    display: block;
     float: left;
+    display: block;
     margin-right: 3.57866%;
     width: 22.316%; }
     .examples .example:last-child {
