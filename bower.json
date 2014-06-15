@@ -1,6 +1,6 @@
 {
   "name": "lighter",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "main": [ "./javascripts/jquery.lighter.js","./stylesheets/jquery.lighter.css" ],
   "ignore": 
   [
@@ -11,8 +11,8 @@
     "**/rainbow.css",
     "**/jquery.js",
     "**/jquery.css",
-    "sample/**/*",
-    "spec/**/*",
+    "samples",
+    "spec",
     "bourbon",
     "neat",
     "packages",
