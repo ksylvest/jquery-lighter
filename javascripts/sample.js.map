@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "sample.js",
+  "sourceRoot": "..",
+  "sources": [
+    "javascripts/sample.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAoLmB;AAAA;AAAA"
+}

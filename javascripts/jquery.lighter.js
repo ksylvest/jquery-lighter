@@ -3,7 +3,7 @@
 /*
 jQuery Lighter
 Copyright 2013 Kevin Sylvestre
-1.1.8
+1.1.9
  */
 
 (function() {
@@ -297,3 +297,5 @@ Copyright 2013 Kevin Sylvestre
   });
 
 }).call(this);
+
+//# sourceMappingURL=jquery.lighter.js.map
