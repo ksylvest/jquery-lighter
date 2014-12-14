@@ -24,6 +24,7 @@
       -o-transform: scale(0.5);
       transform: scale(0.5); }
   .lighter img {
+    display: block;
     width: 100%;
     height: 100%; }
   .lighter .lighter-overlay {
@@ -31,7 +32,7 @@
     height: 100%;
     width: 100%; }
   .lighter .lighter-container {
-    background: white;
+    background: #FFF;
     position: absolute;
     z-index: 4000;
     top: 50%;
@@ -48,26 +49,19 @@
       line-height: 28px;
       font-size: 16pt;
       font-family: Helvetica, Arial, serif; }
-    .lighter .lighter-container .lighter-next {
+    .lighter .lighter-container .lighter-next, .lighter .lighter-container .lighter-prev {
       display: none;
-      right: 40px;
       top: 50%;
-      width: 40px;
+      width: 30px;
       height: 40px;
       margin: -20px 0;
       line-height: 34px;
       font-size: 32pt;
       font-family: Times, serif; }
+    .lighter .lighter-container .lighter-next {
+      right: 40px; }
     .lighter .lighter-container .lighter-prev {
-      display: none;
-      left: 40px;
-      top: 50%;
-      width: 40px;
-      height: 40px;
-      margin: -20px;
-      line-height: 24pt;
-      font-size: 34px;
-      font-family: Times, serif; }
+      left: 40px; }
     .lighter .lighter-container .lighter-next,
     .lighter .lighter-container .lighter-prev,
     .lighter .lighter-container .lighter-close {
@@ -75,7 +69,7 @@
       position: absolute;
       z-index: 8000;
       text-align: center;
-      border-radius: 40px;
+      border-radius: 50%;
       color: rgba(255, 255, 255, 0.8);
       background: rgba(0, 0, 0, 0.2);
       -webkit-user-select: none;

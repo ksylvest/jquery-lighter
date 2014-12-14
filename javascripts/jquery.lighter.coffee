@@ -24,57 +24,50 @@ class Animation
     if transition? then $el.one(transition, callback) else callback()
 
 class Lighter
-  @settings:
+  @namespace: "lighter"
+
+  defaults:
     padding: 40
     dimensions:
-      width:  960
-      height: 540
+      width:  480
+      height: 480
     template:
       """
-      <div class='lighter fade'>
-        <div class='lighter-container'>
-          <span class='lighter-content'></span>
-          <a class='lighter-close'>&times;</a>
-          <a class='lighter-prev'>&lsaquo;</a>
-          <a class='lighter-next'>&rsaquo;</a>
+      <div class='#{Lighter.namespace} fade'>
+        <div class='#{Lighter.namespace}-container'>
+          <span class='#{Lighter.namespace}-content'></span>
+          <a class='#{Lighter.namespace}-close'>&times;</a>
+          <a class='#{Lighter.namespace}-prev'>&lsaquo;</a>
+          <a class='#{Lighter.namespace}-next'>&rsaquo;</a>
         </div>
-        <div class='lighter-overlay'></div>
+        <div class='#{Lighter.namespace}-overlay'></div>
       </div>
       """
 
-  @lighter: ($el, options = {}) ->
-    data = $el.data('_lighter')
-    unless data
-      data = new Lighter($el, options)
-      $el.data('_lighter', data)
+  @lighter: ($target, options = {}) ->
+    data = $target.data('_lighter')
+    $target.data('_lighter', data = new Lighter($target, options)) unless data
     return data
 
   $: (selector) =>
-    @$lighter.find(selector)
+    @$el.find(selector)
 
-  constructor: ($el, settings = {}) ->
-    @$el = $el
+  constructor: ($target, settings = {}) ->
+    @$target = $target
 
-    if @$el.data('width')? and @$el.data('height')?
-      settings.dimensions ?=
-        width:  @$el.data('width')
-        height: @$el.data('height')
+    @settings = $.extend {}, @defaults, settings
 
-    @settings = $.extend {}, Lighter.settings, settings
+    @$el = $(@settings.template)
 
-    @$lighter = $(@settings.template)
+    @$overlay = @$(".#{Lighter.namespace}-overlay")
+    @$content = @$(".#{Lighter.namespace}-content")
+    @$container = @$(".#{Lighter.namespace}-container")
+    @$close = @$(".#{Lighter.namespace}-close")
+    @$prev = @$(".#{Lighter.namespace}-prev")
+    @$next = @$(".#{Lighter.namespace}-next")
+    @$body = @$(".#{Lighter.namespace}-body")
 
-    @$overlay = @$(".lighter-overlay")
-    @$content = @$(".lighter-content")
-    @$container = @$(".lighter-container")
-
-    @$close = @$(".lighter-close")
-    @$prev = @$(".lighter-prev")
-    @$next = @$(".lighter-next")
-    @$body = @$(".lighter-body")
-
-    @width = @settings.dimensions.width
-    @height = @settings.dimensions.height
+    @dimensions = @settings.dimensions
 
     @align()
     @process()
@@ -94,14 +87,11 @@ class Lighter
     event?.stopPropagation()
     # TODO
 
-  image: (href) =>
-    href.match(/\.(jpeg|jpg|jpe|gif|png|bmp)$/i)
-
   type: (href = @href()) =>
-    @settings.type or ("image" if @image(href))
+    @settings.type or ("image" if @href().match(/\.(webp|jpeg|jpg|jpe|gif|png|bmp)$/i))
 
   href: =>
-    @$el.attr("href")
+    @$target.attr("href")
 
   process: =>
     type = @type(href = @href())
@@ -112,24 +102,32 @@ class Lighter
 
     switch type
       when "image"
-        image = new Image()
-        image.src = href
-        image.onload = => @resize(image.width, image.height)
+        @preload(href)
 
-  resize: (width, height) =>
-    @width = width
-    @height = height
+  preload: (href) =>
+    image = new Image()
+    image.src = href
+    image.onload = => 
+      @resize
+        width: image.width
+        height: image.height
+
+  resize: (dimensions) =>
+    @dimensions = dimensions
     @align()
 
   align: =>
-    ratio = Math.max ((height = @height) / ($(window).height() - @settings.padding)) , ((width  = @width ) / ($(window).width()  - @settings.padding))
-    height = Math.round(height / ratio) if ratio > 1.0
-    width  = Math.round(width  / ratio) if ratio > 1.0
+    size = @size()
 
     @$container.css
-      height: height
-      width: width
-      margin: "-#{height / 2}px -#{width / 2}px"
+      height: size.height
+      width: size.width
+      margin: "-#{size.height / 2}px -#{size.width / 2}px"
+
+  size: =>
+    ratio = Math.max (@dimensions.height / ($(window).height() - @settings.padding)) , (@dimensions.width / ($(window).width()  - @settings.padding))
+    width:  if ratio > 1.0 then Math.round(@dimensions.width  / ratio) else @dimensions.width
+    height: if ratio > 1.0 then Math.round(@dimensions.height / ratio) else @dimensions.height
 
   keyup: (event) =>
     return if event.target.form?
@@ -137,7 +135,7 @@ class Lighter
     @prev() if event.which is 37 # l-arrow
     @next() if event.which is 39 # r-arrow
 
-  toggle: (method = 'on') =>
+  observe: (method = 'on') =>
     $(window)[method] "resize", @align
     $(document)[method] "keyup", @keyup
     @$overlay[method] "click", @close
@@ -146,23 +144,23 @@ class Lighter
     @$prev[method] "click", @prev
 
   hide: =>
-    alpha = => @toggle('off')
-    omega = => @$lighter.remove()
+    alpha = => @observe('off')
+    omega = => @$el.remove()
 
     alpha()
-    @$lighter.removeClass('fade')
-    @$lighter.position()
-    @$lighter.addClass('fade')
+    @$el.removeClass('fade')
+    @$el.position()
+    @$el.addClass('fade')
     Animation.execute(@$container, omega)
 
   show: =>
-    omega = => @toggle('on')
-    alpha = => $(document.body).append @$lighter
+    omega = => @observe('on')
+    alpha = => $(document.body).append @$el
 
     alpha()
-    @$lighter.addClass('fade')
-    @$lighter.position()
-    @$lighter.removeClass('fade')
+    @$el.addClass('fade')
+    @$el.position()
+    @$el.removeClass('fade')
     Animation.execute(@$container, omega)
 
 $.fn.extend
