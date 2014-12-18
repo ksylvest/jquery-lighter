@@ -1,7 +1,7 @@
 /*
  * jQuery Lighter
  * Copyright 2013 Kevin Sylvestre
- * 1.1.9
+ * 1.2.0
  */
 
 @import ../bourbon/bourbon
@@ -9,13 +9,33 @@
 $black: #000
 $white: #FFF
 $fast: 0.4s
+$slow: 0.8s
+$delta: 30deg
 
 $namespace: "lighter"
+
++keyframes(#{$namespace}-swizzle)
+  0%
+    +transform(rotate(0deg) scale(1.0))
+  80%
+    +transform(rotate(180deg + $delta) scale(1.2))
+  100%
+    +transform(rotate(180deg) scale(1.1))
+
++keyframes(#{$namespace}-bounce)
+  0%
+    +transform(scale(0.5))
+  80%
+    +transform(scale(1.2))
+  90%
+    +transform(scale(0.9))
+  100%
+    +transform(scale(1.0))
 
 .#{$namespace}, .#{$namespace} *
   +transition(all $fast ease-in-out)
 
-.lighter
+.#{$namespace}
   position: fixed
   top: 0
   bottom: 0
@@ -26,7 +46,7 @@ $namespace: "lighter"
   &.fade
     opacity: 0.0
     .#{$namespace}-container
-      +transform(scale(0.5))
+      +animation(#{$namespace}-bounce $slow reverse)
   img
     display: block
     width: 100%
@@ -53,6 +73,10 @@ $namespace: "lighter"
       line-height: 28px
       font-size: 16pt
       font-family: Helvetica, Arial, serif
+      &:not(:hover)
+        +animation(#{$namespace}-swizzle $slow reverse)
+      &:hover
+        +animation(#{$namespace}-swizzle $slow forwards)
     .#{$namespace}-next,.#{$namespace}-prev
       display: none
       top: 50%
