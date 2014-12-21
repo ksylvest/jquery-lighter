@@ -6,7 +6,7 @@
     "./javascripts/jquery.lighter.js",
     "./javascripts/jquery.lighter.js.map",
     "./stylesheets/jquery.lighter.css",
-    "./stylesheets/jquery.lighter.css.map",
+    "./stylesheets/jquery.lighter.css.map"
   ],
   "ignore": 
   [
