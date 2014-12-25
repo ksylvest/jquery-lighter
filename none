@@ -1,0 +1,44 @@
+/*
+Error: Invalid property: "Backtrace:" (no value).
+        on line 4 of none
+
+1: /*
+2: Errno::ENOENT: No such file or directory @ rb_sysopen - none
+3: 
+4: Backtrace:
+5: /Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:482:in `read'
+6: /Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:482:in `update_stylesheet'
+7: /Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+8: /Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:209:in `each'
+9: /Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+
+Backtrace:
+none:4
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/engine.rb:719:in `parse_property'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/engine.rb:681:in `parse_property_or_rule'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/engine.rb:647:in `parse_line'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/engine.rb:525:in `build_tree'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/engine.rb:544:in `block in append_children'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/engine.rb:543:in `each'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/engine.rb:543:in `append_children'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/engine.rb:396:in `_to_tree'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/engine.rb:368:in `_render_with_sourcemap'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/engine.rb:285:in `render_with_sourcemap'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:209:in `each'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:293:in `watch'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/plugin.rb:108:in `method_missing'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:370:in `watch_or_update'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:50:in `process_result'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/exec/base.rb:52:in `parse'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/exec/base.rb:19:in `parse!'
+/Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/bin/sass:13:in `<top (required)>'
+/Users/kevin/.rbenv/versions/2.1.5/bin/sass:23:in `load'
+/Users/kevin/.rbenv/versions/2.1.5/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid property: \"Backtrace:\" (no value).\A         on line 4 of none\A \A 1: /*\A 2: Errno::ENOENT: No such file or directory @ rb_sysopen - none\A 3: \A 4: Backtrace:\A 5: /Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:482:in `read'\A 6: /Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:482:in `update_stylesheet'\A 7: /Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'\A 8: /Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:209:in `each'\A 9: /Users/kevin/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'"; }

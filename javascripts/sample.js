@@ -3,5 +3,3 @@
 
 
 }).call(this);
-
-//# sourceMappingURL=sample.js.map

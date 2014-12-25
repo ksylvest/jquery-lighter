@@ -2,8 +2,8 @@
 
 /*
 jQuery Lighter
-Copyright 2013 Kevin Sylvestre
-1.2.1
+Copyright 2014 Kevin Sylvestre
+1.2.2
  */
 
 (function() {
@@ -297,5 +297,3 @@ Copyright 2013 Kevin Sylvestre
   });
 
 }).call(this);
-
-//# sourceMappingURL=jquery.lighter.js.map
