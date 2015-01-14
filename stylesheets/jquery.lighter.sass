@@ -1,7 +1,7 @@
 /*
  * jQuery Lighter
  * Copyright 2015 Kevin Sylvestre
- * 1.2.2
+ * 1.2.4
  */
 
 @import ../bourbon/bourbon
@@ -28,7 +28,7 @@ $namespace: "lighter"
   &.fade
     opacity: 0.0
     .#{$namespace}-container
-      +animation(#{$namespace}-bounce $slow reverse)
+      +transform(scale(0.5))
   img
     display: block
     width: 100%

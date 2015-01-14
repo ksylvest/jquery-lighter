@@ -1,6 +1,6 @@
 {
   "name": "lighter",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "main": ["./javascripts/jquery.lighter.js" , "./stylesheets/jquery.lighter.css"],
   "ignore": 
   [

@@ -1,6 +1,6 @@
 /* jQuery Lighter
  * Copyright 2015 Kevin Sylvestre
- * 1.2.3
+ * 1.2.4
  */
 .lighter, .lighter * {
   -webkit-transition: all 0.4s ease-in-out;
@@ -18,9 +18,11 @@
   .lighter.fade {
     opacity: 0; }
     .lighter.fade .lighter-container {
-      -webkit-animation: lighter-bounce 0.8s reverse;
-      -moz-animation: lighter-bounce 0.8s reverse;
-      animation: lighter-bounce 0.8s reverse; }
+      -webkit-transform: scale(0.5);
+      -moz-transform: scale(0.5);
+      -ms-transform: scale(0.5);
+      -o-transform: scale(0.5);
+      transform: scale(0.5); }
   .lighter img {
     display: block;
     width: 100%;
