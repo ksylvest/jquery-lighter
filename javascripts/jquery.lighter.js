@@ -3,7 +3,7 @@
 /*
 jQuery Lighter
 Copyright 2015 Kevin Sylvestre
-1.2.4
+1.2.5
  */
 
 (function() {
@@ -234,13 +234,11 @@ Copyright 2015 Kevin Sylvestre
       var alpha, omega;
       alpha = (function(_this) {
         return function() {
-          console.debug('hide.alpha');
           return _this.observe('off');
         };
       })(this);
       omega = (function(_this) {
         return function() {
-          console.debug('hide.omega');
           return _this.$el.remove();
         };
       })(this);
@@ -255,13 +253,11 @@ Copyright 2015 Kevin Sylvestre
       var alpha, omega;
       omega = (function(_this) {
         return function() {
-          console.debug('show.omega');
           return _this.observe('on');
         };
       })(this);
       alpha = (function(_this) {
         return function() {
-          console.debug('show.alpha');
           return $(document.body).append(_this.$el);
         };
       })(this);

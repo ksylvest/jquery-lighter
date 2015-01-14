@@ -1,7 +1,7 @@
 ###
 jQuery Lighter
 Copyright 2015 Kevin Sylvestre
-1.2.4
+1.2.5
 ###
 
 "use strict"
@@ -144,12 +144,8 @@ class Lighter
     @$prev[method] "click", @prev
 
   hide: =>
-    alpha = =>
-      console.debug('hide.alpha')
-      @observe('off')
-    omega = => 
-      console.debug('hide.omega')
-      @$el.remove()
+    alpha = => @observe('off')
+    omega = => @$el.remove()
 
     alpha()
     @$el.removeClass('fade')
@@ -158,12 +154,8 @@ class Lighter
     Animation.execute(@$el, omega)
 
   show: =>
-    omega = =>
-      console.debug('show.omega')
-      @observe('on')
-    alpha = =>
-      console.debug('show.alpha')
-      $(document.body).append @$el
+    omega = => @observe('on')
+    alpha = => $(document.body).append @$el
 
     alpha()
     @$el.addClass('fade')
