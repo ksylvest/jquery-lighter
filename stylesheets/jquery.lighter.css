@@ -1,83 +1,7 @@
 /* jQuery Lighter
  * Copyright 2015 Kevin Sylvestre
- * 1.2.2
+ * 1.2.3
  */
-@-webkit-keyframes lighter-swizzle {
-  0% {
-    -webkit-transform: rotate(0deg) scale(1); }
-  80% {
-    -webkit-transform: rotate(210deg) scale(1.2); }
-  100% {
-    -webkit-transform: rotate(180deg) scale(1.1); } }
-@-moz-keyframes lighter-swizzle {
-  0% {
-    -moz-transform: rotate(0deg) scale(1); }
-  80% {
-    -moz-transform: rotate(210deg) scale(1.2); }
-  100% {
-    -moz-transform: rotate(180deg) scale(1.1); } }
-@keyframes lighter-swizzle {
-  0% {
-    -webkit-transform: rotate(0deg) scale(1);
-    -moz-transform: rotate(0deg) scale(1);
-    -ms-transform: rotate(0deg) scale(1);
-    -o-transform: rotate(0deg) scale(1);
-    transform: rotate(0deg) scale(1); }
-  80% {
-    -webkit-transform: rotate(210deg) scale(1.2);
-    -moz-transform: rotate(210deg) scale(1.2);
-    -ms-transform: rotate(210deg) scale(1.2);
-    -o-transform: rotate(210deg) scale(1.2);
-    transform: rotate(210deg) scale(1.2); }
-  100% {
-    -webkit-transform: rotate(180deg) scale(1.1);
-    -moz-transform: rotate(180deg) scale(1.1);
-    -ms-transform: rotate(180deg) scale(1.1);
-    -o-transform: rotate(180deg) scale(1.1);
-    transform: rotate(180deg) scale(1.1); } }
-@-webkit-keyframes lighter-bounce {
-  0% {
-    -webkit-transform: scale(0.5); }
-  80% {
-    -webkit-transform: scale(1.2); }
-  90% {
-    -webkit-transform: scale(0.9); }
-  100% {
-    -webkit-transform: scale(1); } }
-@-moz-keyframes lighter-bounce {
-  0% {
-    -moz-transform: scale(0.5); }
-  80% {
-    -moz-transform: scale(1.2); }
-  90% {
-    -moz-transform: scale(0.9); }
-  100% {
-    -moz-transform: scale(1); } }
-@keyframes lighter-bounce {
-  0% {
-    -webkit-transform: scale(0.5);
-    -moz-transform: scale(0.5);
-    -ms-transform: scale(0.5);
-    -o-transform: scale(0.5);
-    transform: scale(0.5); }
-  80% {
-    -webkit-transform: scale(1.2);
-    -moz-transform: scale(1.2);
-    -ms-transform: scale(1.2);
-    -o-transform: scale(1.2);
-    transform: scale(1.2); }
-  90% {
-    -webkit-transform: scale(0.9);
-    -moz-transform: scale(0.9);
-    -ms-transform: scale(0.9);
-    -o-transform: scale(0.9);
-    transform: scale(0.9); }
-  100% {
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1); } }
 .lighter, .lighter * {
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
@@ -123,14 +47,6 @@
       line-height: 28px;
       font-size: 16pt;
       font-family: Helvetica, Arial, serif; }
-      .lighter .lighter-container .lighter-close:not(:hover) {
-        -webkit-animation: lighter-swizzle 0.8s reverse;
-        -moz-animation: lighter-swizzle 0.8s reverse;
-        animation: lighter-swizzle 0.8s reverse; }
-      .lighter .lighter-container .lighter-close:hover {
-        -webkit-animation: lighter-swizzle 0.8s forwards;
-        -moz-animation: lighter-swizzle 0.8s forwards;
-        animation: lighter-swizzle 0.8s forwards; }
     .lighter .lighter-container .lighter-next, .lighter .lighter-container .lighter-prev {
       display: none;
       top: 50%;

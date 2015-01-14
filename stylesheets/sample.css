@@ -1,7 +1,3 @@
-/* Neat 1.7.0
- * http://neat.bourbon.io
- * Copyright 2012-2014 thoughtbot, inc.
- * MIT License */
 html {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -67,10 +63,10 @@ pre .string.value {
   max-width: 68em;
   margin-left: auto;
   margin-right: auto; }
-  .examples:after {
+  .examples::after {
+    clear: both;
     content: "";
-    display: table;
-    clear: both; }
+    display: table; }
   .examples .example {
     float: left;
     display: block;

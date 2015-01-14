@@ -144,24 +144,32 @@ class Lighter
     @$prev[method] "click", @prev
 
   hide: =>
-    alpha = => @observe('off')
-    omega = => @$el.remove()
+    alpha = =>
+      console.debug('hide.alpha')
+      @observe('off')
+    omega = => 
+      console.debug('hide.omega')
+      @$el.remove()
 
     alpha()
     @$el.removeClass('fade')
     @$el.position()
     @$el.addClass('fade')
-    Animation.execute(@$container, omega)
+    Animation.execute(@$el, omega)
 
   show: =>
-    omega = => @observe('on')
-    alpha = => $(document.body).append @$el
+    omega = =>
+      console.debug('show.omega')
+      @observe('on')
+    alpha = =>
+      console.debug('show.alpha')
+      $(document.body).append @$el
 
     alpha()
     @$el.addClass('fade')
     @$el.position()
     @$el.removeClass('fade')
-    Animation.execute(@$container, omega)
+    Animation.execute(@$el, omega)
 
 $.fn.extend
   lighter: (option = {}) ->

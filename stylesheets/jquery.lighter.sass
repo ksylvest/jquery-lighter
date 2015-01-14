@@ -14,24 +14,6 @@ $delta: 30deg
 
 $namespace: "lighter"
 
-+keyframes(#{$namespace}-swizzle)
-  0%
-    +transform(rotate(0deg) scale(1.0))
-  80%
-    +transform(rotate(180deg + $delta) scale(1.2))
-  100%
-    +transform(rotate(180deg) scale(1.1))
-
-+keyframes(#{$namespace}-bounce)
-  0%
-    +transform(scale(0.5))
-  80%
-    +transform(scale(1.2))
-  90%
-    +transform(scale(0.9))
-  100%
-    +transform(scale(1.0))
-
 .#{$namespace}, .#{$namespace} *
   +transition(all $fast ease-in-out)
 
@@ -73,10 +55,6 @@ $namespace: "lighter"
       line-height: 28px
       font-size: 16pt
       font-family: Helvetica, Arial, serif
-      &:not(:hover)
-        +animation(#{$namespace}-swizzle $slow reverse)
-      &:hover
-        +animation(#{$namespace}-swizzle $slow forwards)
     .#{$namespace}-next,.#{$namespace}-prev
       display: none
       top: 50%

@@ -234,11 +234,13 @@ Copyright 2015 Kevin Sylvestre
       var alpha, omega;
       alpha = (function(_this) {
         return function() {
+          console.debug('hide.alpha');
           return _this.observe('off');
         };
       })(this);
       omega = (function(_this) {
         return function() {
+          console.debug('hide.omega');
           return _this.$el.remove();
         };
       })(this);
@@ -246,18 +248,20 @@ Copyright 2015 Kevin Sylvestre
       this.$el.removeClass('fade');
       this.$el.position();
       this.$el.addClass('fade');
-      return Animation.execute(this.$container, omega);
+      return Animation.execute(this.$el, omega);
     };
 
     Lighter.prototype.show = function() {
       var alpha, omega;
       omega = (function(_this) {
         return function() {
+          console.debug('show.omega');
           return _this.observe('on');
         };
       })(this);
       alpha = (function(_this) {
         return function() {
+          console.debug('show.alpha');
           return $(document.body).append(_this.$el);
         };
       })(this);
@@ -265,7 +269,7 @@ Copyright 2015 Kevin Sylvestre
       this.$el.addClass('fade');
       this.$el.position();
       this.$el.removeClass('fade');
-      return Animation.execute(this.$container, omega);
+      return Animation.execute(this.$el, omega);
     };
 
     return Lighter;
