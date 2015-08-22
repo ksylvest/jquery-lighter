@@ -1,7 +1,7 @@
 /*
  * jQuery Lighter
  * Copyright 2015 Kevin Sylvestre
- * 1.3.1
+ * 1.3.2
  */
 
 @import ../bourbon/bourbon
@@ -11,6 +11,10 @@ $white: #FFF
 $fast: 0.4s
 $slow: 0.8s
 $delta: 30deg
+
+$alpha: 0.2s
+$sigma: 0.4s
+$omega: 0.6s
 
 $namespace: "lighter"
 
@@ -27,24 +31,35 @@ $namespace: "lighter"
     width: 100%
     height: 100%
 
+  &-loading &-spinner
+    opacity: 1.0
+
+  &-loading &-container
+    opacity: 0.0
+
+  &-fetched &-spinner
+    opacity: 0.0
+
+  &-fetched &-container
+    opacity: 1.0
+
   &-fade &-overlay
     opacity: 0.0
 
   &-fade &-container
     opacity: 0.0
-    +transform(scale(0.4))
+
+  &-fade &-spinner
+    opacity: 0.0
 
   &-overlay
-    +transition(all $fast ease-in-out)
-    +transition-property(opacity)
+    +transition(opacity $fast ease-in-out)
     background: rgba($white, 0.8)
     height: 100%
     width: 100%
 
   &-container
-    +transition(all $fast ease-in-out)
-    +transition-property(opacity,transform)
-    +transform(scale(1.0))
+    +transition(opacity $fast ease-in-out)
     background: $white
     position: absolute
     z-index: 4000
@@ -101,3 +116,44 @@ $namespace: "lighter"
     &:active
       color: rgba($white, 1.0)
       background: rgba($black, 0.4)
+
+  &-spinner
+    +clearfix
+    +transition(opacity $fast ease-in-out)
+    position: absolute
+    width: 60px
+    height: 20px
+    margin: -10px -30px
+    z-index: 4000
+    top:    50%
+    left:   50%
+    right:  50%
+    bottom: 50%
+
+  &-dot
+    display: block
+    float: left
+    background: rgba($black, 0.2)
+    width: 16px
+    height: 16px
+    margin: 2px
+    padding: 0
+    border-radius: 50%
+
+    +animation(#{$namespace}-bounce $slow * 2 infinite ease-in-out)
+    &:nth-child(1)
+      +animation-delay((-$fast / 3) * 3)
+    &:nth-child(2)
+      +animation-delay((-$fast / 3) * 2)
+    &:nth-child(3)
+      +animation-delay((-$fast / 3) * 1)
+
++keyframes(#{$namespace}-bounce)
+  from,to
+    +transform(scale(0.0))
+  20%
+    +transform(scale(0.0))
+  50%
+    +transform(scale(1.0))
+  80%
+    +transform(scale(0.0))

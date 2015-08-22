@@ -1,7 +1,7 @@
 ###
 jQuery Lighter
 Copyright 2015 Kevin Sylvestre
-1.3.1
+1.3.2
 ###
 
 "use strict"
@@ -50,6 +50,8 @@ class Lighter
   @namespace: "lighter"
 
   defaults:
+    loading: '#{Lighter.namespace}-loading'
+    fetched: '#{Lighter.namespace}-fetched'
     padding: 40
     dimensions:
       width:  480
@@ -62,6 +64,11 @@ class Lighter
           <a class='#{Lighter.namespace}-close'>&times;</a>
           <a class='#{Lighter.namespace}-prev'>&lsaquo;</a>
           <a class='#{Lighter.namespace}-next'>&rsaquo;</a>
+        </div>
+        <div class='#{Lighter.namespace}-spinner'>
+          <div class='#{Lighter.namespace}-dot'></div>
+          <div class='#{Lighter.namespace}-dot'></div>
+          <div class='#{Lighter.namespace}-dot'></div>
         </div>
         <div class='#{Lighter.namespace}-overlay'></div>
       </div>
@@ -92,12 +99,7 @@ class Lighter
 
     @dimensions = @settings.dimensions
 
-    @slide = new Slide(@$target.attr("href"))
-    @slide.preload (slide) => @resize(slide.dimensions)
-
-    @$content.html(@slide.$content())
-
-    @align()
+    @process()
 
   close: (event) =>
     event?.preventDefault()
@@ -120,6 +122,21 @@ class Lighter
   resize: (dimensions) =>
     @dimensions = dimensions
     @align()
+
+  process: =>
+    fetched = =>
+      @$el.removeClass("#{Lighter.namespace}-loading").addClass("#{Lighter.namespace}-fetched")
+
+    loading = =>
+      @$el.removeClass("#{Lighter.namespace}-fetched").addClass("#{Lighter.namespace}-loading")
+
+    @slide = new Slide(@$target.attr("href"))
+
+    loading()
+    @slide.preload (slide) =>
+      @resize(slide.dimensions)
+      @$content.html(@slide.$content())
+      fetched()
 
   align: =>
     size = @size()

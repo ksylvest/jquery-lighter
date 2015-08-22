@@ -3,7 +3,7 @@
 /*
 jQuery Lighter
 Copyright 2015 Kevin Sylvestre
-1.3.1
+1.3.2
  */
 
 (function() {
@@ -94,12 +94,14 @@ Copyright 2015 Kevin Sylvestre
     Lighter.namespace = "lighter";
 
     Lighter.prototype.defaults = {
+      loading: '#{Lighter.namespace}-loading',
+      fetched: '#{Lighter.namespace}-fetched',
       padding: 40,
       dimensions: {
         width: 480,
         height: 480
       },
-      template: "<div class='" + Lighter.namespace + " " + Lighter.namespace + "-fade'>\n  <div class='" + Lighter.namespace + "-container'>\n    <span class='" + Lighter.namespace + "-content'></span>\n    <a class='" + Lighter.namespace + "-close'>&times;</a>\n    <a class='" + Lighter.namespace + "-prev'>&lsaquo;</a>\n    <a class='" + Lighter.namespace + "-next'>&rsaquo;</a>\n  </div>\n  <div class='" + Lighter.namespace + "-overlay'></div>\n</div>"
+      template: "<div class='" + Lighter.namespace + " " + Lighter.namespace + "-fade'>\n  <div class='" + Lighter.namespace + "-container'>\n    <span class='" + Lighter.namespace + "-content'></span>\n    <a class='" + Lighter.namespace + "-close'>&times;</a>\n    <a class='" + Lighter.namespace + "-prev'>&lsaquo;</a>\n    <a class='" + Lighter.namespace + "-next'>&rsaquo;</a>\n  </div>\n  <div class='" + Lighter.namespace + "-spinner'>\n    <div class='" + Lighter.namespace + "-dot'></div>\n    <div class='" + Lighter.namespace + "-dot'></div>\n    <div class='" + Lighter.namespace + "-dot'></div>\n  </div>\n  <div class='" + Lighter.namespace + "-overlay'></div>\n</div>"
     };
 
     Lighter.lighter = function($target, options) {
@@ -128,6 +130,7 @@ Copyright 2015 Kevin Sylvestre
       this.keyup = bind(this.keyup, this);
       this.size = bind(this.size, this);
       this.align = bind(this.align, this);
+      this.process = bind(this.process, this);
       this.resize = bind(this.resize, this);
       this.type = bind(this.type, this);
       this.prev = bind(this.prev, this);
@@ -145,14 +148,7 @@ Copyright 2015 Kevin Sylvestre
       this.$next = this.$("." + Lighter.namespace + "-next");
       this.$body = this.$("." + Lighter.namespace + "-body");
       this.dimensions = this.settings.dimensions;
-      this.slide = new Slide(this.$target.attr("href"));
-      this.slide.preload((function(_this) {
-        return function(slide) {
-          return _this.resize(slide.dimensions);
-        };
-      })(this));
-      this.$content.html(this.slide.$content());
-      this.align();
+      this.process();
     }
 
     Lighter.prototype.close = function(event) {
@@ -189,6 +185,29 @@ Copyright 2015 Kevin Sylvestre
     Lighter.prototype.resize = function(dimensions) {
       this.dimensions = dimensions;
       return this.align();
+    };
+
+    Lighter.prototype.process = function() {
+      var fetched, loading;
+      fetched = (function(_this) {
+        return function() {
+          return _this.$el.removeClass(Lighter.namespace + "-loading").addClass(Lighter.namespace + "-fetched");
+        };
+      })(this);
+      loading = (function(_this) {
+        return function() {
+          return _this.$el.removeClass(Lighter.namespace + "-fetched").addClass(Lighter.namespace + "-loading");
+        };
+      })(this);
+      this.slide = new Slide(this.$target.attr("href"));
+      loading();
+      return this.slide.preload((function(_this) {
+        return function(slide) {
+          _this.resize(slide.dimensions);
+          _this.$content.html(_this.slide.$content());
+          return fetched();
+        };
+      })(this));
     };
 
     Lighter.prototype.align = function() {
