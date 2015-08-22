@@ -1,7 +1,7 @@
 ###
 jQuery Lighter
 Copyright 2015 Kevin Sylvestre
-1.2.5
+1.3.0
 ###
 
 "use strict"
@@ -9,6 +9,7 @@ Copyright 2015 Kevin Sylvestre
 $ = jQuery
 
 class Animation
+
   @transitions:
     "webkitTransition": "webkitTransitionEnd"
     "mozTransition": "mozTransitionEnd"
@@ -16,12 +17,34 @@ class Animation
     "transition": "transitionend"
 
   @transition: ($el) ->
-    el = $el[0]
-    return result for type, result of @transitions when el.style[type]?
+    for el in $el
+      return result for type, result of @transitions when el.style[type]?
 
   @execute: ($el, callback) ->
     transition = @transition($el)
     if transition? then $el.one(transition, callback) else callback()
+
+class Slide
+
+  constructor: (url) ->
+    @url = url
+
+  type: ->
+    switch
+      when @url.match(/\.(webp|jpeg|jpg|jpe|gif|png|bmp)$/i) then 'image'
+      else 'unknown'
+
+  preload: (callback) ->
+    image = new Image()
+    image.src = @url
+    image.onload = =>
+      @dimensions =
+        width: image.width
+        height: image.height
+      callback(@)
+
+  $content: ->
+    $("<img />").attr(src: @url)
 
 class Lighter
   @namespace: "lighter"
@@ -33,7 +56,7 @@ class Lighter
       height: 480
     template:
       """
-      <div class='#{Lighter.namespace} fade'>
+      <div class='#{Lighter.namespace} #{Lighter.namespace}-fade'>
         <div class='#{Lighter.namespace}-container'>
           <span class='#{Lighter.namespace}-content'></span>
           <a class='#{Lighter.namespace}-close'>&times;</a>
@@ -69,8 +92,12 @@ class Lighter
 
     @dimensions = @settings.dimensions
 
+    @slide = new Slide(@$target.attr("href"))
+    @slide.preload (slide) =>
+      @$content.html(slide.$content())
+      @resize(slide.dimensions)
+
     @align()
-    @process()
 
   close: (event) =>
     event?.preventDefault()
@@ -90,28 +117,6 @@ class Lighter
   type: (href = @href()) =>
     @settings.type or ("image" if @href().match(/\.(webp|jpeg|jpg|jpe|gif|png|bmp)$/i))
 
-  href: =>
-    @$target.attr("href")
-
-  process: =>
-    type = @type(href = @href())
-
-    @$content.html switch type
-      when "image" then $("<img />").attr(src: href)
-      else $(href)
-
-    switch type
-      when "image"
-        @preload(href)
-
-  preload: (href) =>
-    image = new Image()
-    image.src = href
-    image.onload = => 
-      @resize
-        width: image.width
-        height: image.height
-
   resize: (dimensions) =>
     @dimensions = dimensions
     @align()
@@ -120,8 +125,8 @@ class Lighter
     size = @size()
 
     @$container.css
-      height: size.height
       width: size.width
+      height: size.height
       margin: "-#{size.height / 2}px -#{size.width / 2}px"
 
   size: =>
@@ -148,9 +153,8 @@ class Lighter
     omega = => @$el.remove()
 
     alpha()
-    @$el.removeClass('fade')
     @$el.position()
-    @$el.addClass('fade')
+    @$el.addClass("#{Lighter.namespace}-fade")
     Animation.execute(@$el, omega)
 
   show: =>
@@ -158,9 +162,8 @@ class Lighter
     alpha = => $(document.body).append @$el
 
     alpha()
-    @$el.addClass('fade')
     @$el.position()
-    @$el.removeClass('fade')
+    @$el.removeClass("#{Lighter.namespace}-fade")
     Animation.execute(@$el, omega)
 
 $.fn.extend

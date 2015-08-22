@@ -1,7 +1,7 @@
 /*
  * jQuery Lighter
  * Copyright 2015 Kevin Sylvestre
- * 1.2.5
+ * 1.3.0
  */
 
 @import ../bourbon/bourbon
@@ -14,9 +14,6 @@ $delta: 30deg
 
 $namespace: "lighter"
 
-.#{$namespace}, .#{$namespace} *
-  +transition(all $fast ease-in-out)
-
 .#{$namespace}
   position: fixed
   top: 0
@@ -25,19 +22,29 @@ $namespace: "lighter"
   right: 0
   z-index: 4000
   opacity: 1.0
-  &.fade
-    opacity: 0.0
-    .#{$namespace}-container
-      +transform(scale(0.5))
   img
     display: block
     width: 100%
     height: 100%
-  .#{$namespace}-overlay,
-    background: rgba($black, 0.5)
+
+  &-fade &-overlay
+    opacity: 0.0
+
+  &-fade &-container
+    opacity: 0.0
+    +transform(scale(0.4))
+
+  &-overlay
+    +transition(all $fast ease-in-out)
+    +transition-property(opacity)
+    background: rgba($white, 0.8)
     height: 100%
     width: 100%
-  .#{$namespace}-container,
+
+  &-container
+    +transition(all $fast ease-in-out)
+    +transition-property(opacity,transform)
+    +transform(scale(1.0))
     background: $white
     position: absolute
     z-index: 4000
@@ -45,43 +52,52 @@ $namespace: "lighter"
     left:   50%
     right:  50%
     bottom: 50%
-    box-shadow: 0px 2px 8px rgba($black, 0.5)
-    .#{$namespace}-close
-      top: 0
-      left: 0
-      width: 30px
-      height: 30px
-      margin: -15px
-      line-height: 28px
-      font-size: 16pt
-      font-family: Helvetica, Arial, serif
-    .#{$namespace}-next,.#{$namespace}-prev
-      display: none
-      top: 50%
-      width: 30px
-      height: 40px
-      margin: -20px 0
-      line-height: 34px
-      font-size: 32pt
-      font-family: Times, serif
-    .#{$namespace}-next
-      right: 40px
-    .#{$namespace}-prev
-      left: 40px
-    .#{$namespace}-next,
-    .#{$namespace}-prev,
-    .#{$namespace}-close
-      cursor: pointer
-      position: absolute
-      z-index: 8000
-      text-align: center
-      border-radius: 50%
-      color: rgba(255, 255, 255, 0.8)
-      background: rgba($black, 0.2)
-      +user-select
-      &:hover
-        color: rgba($white, 1.0)
-        background: rgba($black, 0.6)
-      &:active
-        color: rgba($white, 1.0)
-        background: rgba($black, 0.6)
+    box-shadow: 0px 2px 8px rgba($black, 0.4)
+
+  &-close
+    top: 0
+    left: 0
+    width: 30px
+    height: 30px
+    margin: -15px
+    line-height: 28px
+    font-size: 16pt
+    font-family: Helvetica, Arial, serif
+
+  &-next,&-prev
+    display: none
+    top: 50%
+    width: 40px
+    height: 40px
+    margin: -20px 0
+    line-height: 34px
+    font-size: 32pt
+    font-family: Times, serif
+
+  &-next
+    right: 40px
+
+  &-prev
+    left: 40px
+
+  &-next,
+  &-prev,
+  &-close
+    cursor: pointer
+    position: absolute
+    z-index: 8000
+    text-align: center
+    border-radius: 50%
+    color: rgba(255, 255, 255, 0.8)
+    background: rgba($black, 0.2)
+    +user-select
+    +transition(all $fast ease-in-out)
+    +transition-property(color,background)
+
+    &:hover
+      color: rgba($white, 1.0)
+      background: rgba($black, 0.4)
+
+    &:active
+      color: rgba($white, 1.0)
+      background: rgba($black, 0.4)
