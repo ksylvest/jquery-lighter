@@ -61,6 +61,13 @@ Setting up a lighter is easy. The following snippet is a good start:
       <img src="samples/preview-06.png" />
     </a>
 
+## Contributing
+
+Lighter is maintained in `CoffeeScript`. All contributions need to be submitted in `CoffeeScript`. The project includes a `Cakefile` that can be used to compile all assets (see: `cake watch`). For more information about `CoffeeScript` see:
+
+ - http://coffeescript.org/
+ - http://arcturo.github.io/library/coffeescript/
+
 ## Status
 
 [![Status](https://travis-ci.org/ksylvest/jquery-lighter.png)](https://travis-ci.org/ksylvest/jquery-lighter)
