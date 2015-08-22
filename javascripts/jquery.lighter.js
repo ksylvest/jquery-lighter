@@ -3,7 +3,7 @@
 /*
 jQuery Lighter
 Copyright 2015 Kevin Sylvestre
-1.3.2
+1.3.3
  */
 
 (function() {
