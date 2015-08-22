@@ -1,7 +1,7 @@
 ###
 jQuery Lighter
 Copyright 2015 Kevin Sylvestre
-1.3.0
+1.3.1
 ###
 
 "use strict"
@@ -93,9 +93,9 @@ class Lighter
     @dimensions = @settings.dimensions
 
     @slide = new Slide(@$target.attr("href"))
-    @slide.preload (slide) =>
-      @$content.html(slide.$content())
-      @resize(slide.dimensions)
+    @slide.preload (slide) => @resize(slide.dimensions)
+
+    @$content.html(@slide.$content())
 
     @align()
 

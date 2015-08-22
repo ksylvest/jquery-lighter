@@ -3,7 +3,7 @@
 /*
 jQuery Lighter
 Copyright 2015 Kevin Sylvestre
-1.3.0
+1.3.1
  */
 
 (function() {
@@ -148,10 +148,10 @@ Copyright 2015 Kevin Sylvestre
       this.slide = new Slide(this.$target.attr("href"));
       this.slide.preload((function(_this) {
         return function(slide) {
-          _this.$content.html(slide.$content());
           return _this.resize(slide.dimensions);
         };
       })(this));
+      this.$content.html(this.slide.$content());
       this.align();
     }
 
