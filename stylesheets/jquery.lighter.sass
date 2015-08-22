@@ -31,35 +31,43 @@ $namespace: "lighter"
     width: 100%
     height: 100%
 
-  &-loading &-spinner
-    opacity: 1.0
-
-  &-loading &-container
-    opacity: 0.0
-
-  &-fetched &-spinner
-    opacity: 0.0
-
-  &-fetched &-container
-    opacity: 1.0
-
   &-fade &-overlay
     opacity: 0.0
 
+  &-loading &-spinner
+    opacity: 1.0
+    +transform(scale(1.0))
+
+  &-loading &-container
+    opacity: 0.0
+    +transform(scale(0.4))
+
+  &-fetched &-spinner
+    opacity: 0.0
+    +transform(scale(0.4))
+
+  &-fetched &-container
+    opacity: 1.0
+    +transform(scale(1.0))
+
   &-fade &-container
     opacity: 0.0
+    +transform(scale(0.4))
 
   &-fade &-spinner
     opacity: 0.0
+    +transform(scale(0.4))
 
   &-overlay
-    +transition(opacity $fast ease-in-out)
+    +transition(all $fast cubic-bezier(0.6, -0.4, 0.2, 1.4))
+    +transition-property(opacity,transform)
     background: rgba($white, 0.8)
     height: 100%
     width: 100%
 
   &-container
-    +transition(opacity $fast ease-in-out)
+    +transition(all $fast cubic-bezier(0.6, -0.4, 0.2, 1.4))
+    +transition-property(opacity,transform)
     background: $white
     position: absolute
     z-index: 4000

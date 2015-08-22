@@ -14,31 +14,67 @@
     display: block;
     width: 100%;
     height: 100%; }
-  .lighter-loading .lighter-spinner {
-    opacity: 1; }
-  .lighter-loading .lighter-container {
-    opacity: 0; }
-  .lighter-fetched .lighter-spinner {
-    opacity: 0; }
-  .lighter-fetched .lighter-container {
-    opacity: 1; }
   .lighter-fade .lighter-overlay {
     opacity: 0; }
+  .lighter-loading .lighter-spinner {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1); }
+  .lighter-loading .lighter-container {
+    opacity: 0;
+    -webkit-transform: scale(0.4);
+    -moz-transform: scale(0.4);
+    -ms-transform: scale(0.4);
+    -o-transform: scale(0.4);
+    transform: scale(0.4); }
+  .lighter-fetched .lighter-spinner {
+    opacity: 0;
+    -webkit-transform: scale(0.4);
+    -moz-transform: scale(0.4);
+    -ms-transform: scale(0.4);
+    -o-transform: scale(0.4);
+    transform: scale(0.4); }
+  .lighter-fetched .lighter-container {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1); }
   .lighter-fade .lighter-container {
-    opacity: 0; }
+    opacity: 0;
+    -webkit-transform: scale(0.4);
+    -moz-transform: scale(0.4);
+    -ms-transform: scale(0.4);
+    -o-transform: scale(0.4);
+    transform: scale(0.4); }
   .lighter-fade .lighter-spinner {
-    opacity: 0; }
+    opacity: 0;
+    -webkit-transform: scale(0.4);
+    -moz-transform: scale(0.4);
+    -ms-transform: scale(0.4);
+    -o-transform: scale(0.4);
+    transform: scale(0.4); }
   .lighter-overlay {
-    -webkit-transition: opacity 0.4s ease-in-out;
-    -moz-transition: opacity 0.4s ease-in-out;
-    transition: opacity 0.4s ease-in-out;
+    -webkit-transition: all 0.4s cubic-bezier(0.6, -0.4, 0.2, 1.4);
+    -moz-transition: all 0.4s cubic-bezier(0.6, -0.4, 0.2, 1.4);
+    transition: all 0.4s cubic-bezier(0.6, -0.4, 0.2, 1.4);
+    -webkit-transition-property: opacity, -webkit-transform;
+    -moz-transition-property: opacity, -moz-transform;
+    transition-property: opacity, transform;
     background: rgba(255, 255, 255, 0.8);
     height: 100%;
     width: 100%; }
   .lighter-container {
-    -webkit-transition: opacity 0.4s ease-in-out;
-    -moz-transition: opacity 0.4s ease-in-out;
-    transition: opacity 0.4s ease-in-out;
+    -webkit-transition: all 0.4s cubic-bezier(0.6, -0.4, 0.2, 1.4);
+    -moz-transition: all 0.4s cubic-bezier(0.6, -0.4, 0.2, 1.4);
+    transition: all 0.4s cubic-bezier(0.6, -0.4, 0.2, 1.4);
+    -webkit-transition-property: opacity, -webkit-transform;
+    -moz-transition-property: opacity, -moz-transform;
+    transition-property: opacity, transform;
     background: #FFF;
     position: absolute;
     z-index: 4000;
