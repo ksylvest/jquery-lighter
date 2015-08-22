@@ -1,6 +1,6 @@
 /* jQuery Lighter
  * Copyright 2015 Kevin Sylvestre
- * 1.3.3
+ * 1.3.4
  */
 .lighter {
   position: fixed;
@@ -59,9 +59,9 @@
     -o-transform: scale(0.4);
     transform: scale(0.4); }
   .lighter-overlay {
-    -webkit-transition: all 0.4s cubic-bezier(0.6, -0.4, 0.2, 1.4);
-    -moz-transition: all 0.4s cubic-bezier(0.6, -0.4, 0.2, 1.4);
-    transition: all 0.4s cubic-bezier(0.6, -0.4, 0.2, 1.4);
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
     -webkit-transition-property: opacity, -webkit-transform;
     -moz-transition-property: opacity, -moz-transform;
     transition-property: opacity, transform;
@@ -69,9 +69,9 @@
     height: 100%;
     width: 100%; }
   .lighter-container {
-    -webkit-transition: all 0.4s cubic-bezier(0.6, -0.4, 0.2, 1.4);
-    -moz-transition: all 0.4s cubic-bezier(0.6, -0.4, 0.2, 1.4);
-    transition: all 0.4s cubic-bezier(0.6, -0.4, 0.2, 1.4);
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
     -webkit-transition-property: opacity, -webkit-transform;
     -moz-transition-property: opacity, -moz-transform;
     transition-property: opacity, transform;

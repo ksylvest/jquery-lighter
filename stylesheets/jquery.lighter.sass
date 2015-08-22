@@ -1,7 +1,7 @@
 /*
  * jQuery Lighter
  * Copyright 2015 Kevin Sylvestre
- * 1.3.3
+ * 1.3.4
  */
 
 @import ../bourbon/bourbon
@@ -59,14 +59,14 @@ $namespace: "lighter"
     +transform(scale(0.4))
 
   &-overlay
-    +transition(all $fast cubic-bezier(0.6, -0.4, 0.2, 1.4))
+    +transition(all $fast ease-in-out)
     +transition-property(opacity,transform)
     background: rgba($white, 0.8)
     height: 100%
     width: 100%
 
   &-container
-    +transition(all $fast cubic-bezier(0.6, -0.4, 0.2, 1.4))
+    +transition(all $fast ease-in-out)
     +transition-property(opacity,transform)
     background: $white
     position: absolute
