@@ -1,0 +1,16 @@
+{
+  "name": "jquery.lighter",
+  "version": "1.3.4",
+  "description": "Lighter is a jQuery plugin created to provide zoomable content like other light box plugins.",
+  "main": "./javascripts/jquery.lighter.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksylvest/jquery-lighter.git"
+  },
+  "author": "Kevin Sylvestre",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ksylvest/jquery-lighter/issues"
+  },
+  "homepage": "https://github.com/ksylvest/jquery-lighter#readme"
+}

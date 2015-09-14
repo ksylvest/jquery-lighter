@@ -1,8 +1,8 @@
 {
   "name": "lighter",
   "title": "jQuery Lighter",
-  "description": "Lighter is a jQuery plugin created to provide zoomable content like other lightbox plugins.",
-  "keywords": 
+  "description": "Lighter is a jQuery plugin created to provide zoomable content like other light box plugins.",
+  "keywords":
   [
     "lightbox",
     "animation",
@@ -15,7 +15,7 @@
     "email": "kevin@ksylvest.com",
     "url": "http://ksylvest.com/"
   },
-  "licenses": 
+  "licenses":
   [
     {
       "type": "MIT",
@@ -26,7 +26,7 @@
   "docs": "https://ksylvest.github.com/jquery-lighter",
   "homepage": "https://ksylvest.github.com/jquery-lighter",
   "download": "https://ksylvest.github.com/jquery-lighter",
-  "dependencies": 
+  "dependencies":
   {
     "jquery": ">1.5"
   }

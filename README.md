@@ -1,6 +1,6 @@
 # jQuery Lighter
 
-Lighter is a jQuery plugin created to provide zoomable content like other lightbox plugins.
+Lighter is a jQuery plugin created to provide zoomable content like other light box plugins.
 
 ## Installation
 
